@@ -3,18 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Where Is My Husband? 💍</title>
-
+<title>Husband Upgrade Audit 💍</title>
 <style>
   :root{
-    --bg1:#070815;
-    --bg2:#2a0f58;
+    --bg1:#070815; --bg2:#2a0f58;
     --card: rgba(255,255,255,.92);
-    --ink:#111226;
-    --muted: rgba(17,18,38,.70);
-    --pink:#ff4f8b;
-    --pink2:#ff86b7;
-    --mint:#37f2c8;
+    --ink:#111226; --muted: rgba(17,18,38,.70);
+    --pink:#ff4f8b; --pink2:#ff86b7; --mint:#37f2c8;
     --line: rgba(17,18,38,.10);
     --shadow: 0 22px 80px rgba(0,0,0,.45);
     --radius: 26px;
@@ -31,35 +26,19 @@
     overflow:hidden;
     color:var(--ink);
   }
-
-  /* cinematic grain */
   body:before{
-    content:"";
-    position:fixed; inset:0;
+    content:""; position:fixed; inset:0; pointer-events:none; opacity:.20; mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-    opacity:.20;
-    pointer-events:none;
-    mix-blend-mode:overlay;
   }
-
-  .sparkle{
-    position:fixed; width:6px;height:6px;border-radius:999px;
-    background: rgba(255,255,255,.75); opacity:.18;
-    animation: float 7s linear infinite; pointer-events:none;
-  }
-  @keyframes float{ from{transform:translateY(30px)} to{transform:translateY(-110vh)} }
-
-  .wrap{ width:min(980px, 95vw); padding:18px; position:relative; }
+  .wrap{ width:min(980px, 95vw); padding:18px; }
   .card{
     background: var(--card);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.30);
+    border:1px solid rgba(255,255,255,.30);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     overflow:hidden;
     position:relative;
   }
-
   .topbar{
     display:flex; gap:10px; align-items:center; flex-wrap:wrap;
     padding: 14px 18px;
@@ -68,7 +47,7 @@
   }
   .pill{
     padding: 8px 12px; border-radius:999px;
-    font-weight: 1000; font-size: 13px; letter-spacing:.2px;
+    font-weight: 1000; font-size: 13px;
     background: rgba(255,79,139,.10);
     border: 1px solid rgba(255,79,139,.22);
     color:#b11052;
@@ -78,7 +57,6 @@
     border: 1px solid rgba(55,242,200,.22);
     color:#0b5a4f;
   }
-
   .content{ padding: 22px 22px 18px 22px; }
   h1{
     margin:0 0 10px 0;
@@ -90,7 +68,10 @@
     margin:0 0 14px 0;
     font-size: clamp(15px, 1.8vw, 18px);
     color: var(--muted);
+    line-height:1.55;
   }
+  .screen{ display:none; }
+  .screen.active{ display:block; }
 
   .panel{
     border-radius: 18px;
@@ -105,42 +86,25 @@
     color: rgba(17,18,38,.78);
     margin-bottom:8px;
   }
-
-  .grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+  .grid{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
   @media (max-width: 860px){ .grid{ grid-template-columns:1fr; } }
 
-  .buttons{
-    display:flex;
-    gap:12px;
-    flex-wrap:wrap;
-    margin-top:14px;
-    align-items:center;
-  }
+  .buttons{ display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; align-items:center; }
   button{
-    border:0;
-    border-radius: 999px;
+    border:0; border-radius:999px;
     padding: 14px 18px;
-    font-size: 16px;
-    font-weight: 1100;
-    cursor:pointer;
-    user-select:none;
+    font-size:16px; font-weight:1100;
+    cursor:pointer; user-select:none;
     -webkit-tap-highlight-color: transparent;
-    transition: transform .12s ease, filter .12s ease, opacity .12s ease;
-    position:relative;
+    transition: transform .12s ease, filter .12s ease;
   }
   button:active{ transform:scale(.98) }
-
   .primary{
     background: linear-gradient(135deg, var(--pink), var(--pink2));
     color:white;
     box-shadow: 0 10px 26px rgba(255,79,139,.35);
   }
   .primary:hover{ filter:brightness(1.05) }
-
   .secondary{
     background: rgba(17,18,38,.07);
     border: 1px solid rgba(17,18,38,.12);
@@ -155,33 +119,48 @@
     border-top: 1px solid var(--line);
     background: rgba(255,255,255,.52);
   }
-  .sig{ font-weight: 1100; color: rgba(17,18,38,.75); }
 
-  .screen{ display:none }
-  .screen.active{ display:block }
+  .bigline{
+    font-size: clamp(20px, 3.1vw, 44px);
+    font-weight: 1100;
+    letter-spacing:-.6px;
+    line-height:1.08;
+    margin: 0;
+    min-height: 1.3em;
+    color: rgba(255,255,255,.92);
+  }
+  .darkStage{
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.70)),
+      radial-gradient(900px 500px at 50% 60%, rgba(255,255,255,.06), transparent 60%);
+    padding: 22px;
+    min-height: 420px;
+    display:flex;
+    align-items:center;
+  }
+  .darkText{ max-width: 820px; }
+  .subline{
+    margin-top:14px;
+    font-size: clamp(14px, 1.7vw, 18px);
+    color: rgba(255,255,255,.76);
+    line-height:1.55;
+    min-height: 5em;
+    white-space: pre-line;
+  }
+  .hidden{ display:none !important; }
 
   .meter{
-    height: 12px;
-    border-radius: 999px;
+    height: 12px; border-radius:999px;
     background: rgba(17,18,38,.08);
     overflow:hidden;
-    border: 1px solid rgba(17,18,38,.08);
+    border:1px solid rgba(17,18,38,.08);
   }
   .bar{
-    height:100%;
-    width:0%;
+    height:100%; width:0%;
     background: linear-gradient(90deg, var(--mint), var(--pink2));
-    border-radius: 999px;
-    transition: width .35s ease;
+    border-radius:999px;
+    transition: width .5s ease;
   }
-
-  .log{
-    margin:10px 0 0 0;
-    font-size: 14px;
-    color: rgba(17,18,38,.78);
-    line-height:1.45;
-  }
-  .logline{ display:block; margin-top:6px; }
   .warn{
     display:inline-block;
     padding:6px 10px;
@@ -192,7 +171,7 @@
     font-weight: 1000;
     font-size: 13px;
   }
-
+  .deductions{ margin:0; padding-left:16px; color: rgba(17,18,38,.72); line-height:1.55; font-size:14px; }
   .scoreRow{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
   .scoreBig{ font-size: 34px; font-weight: 1200; letter-spacing:-.6px; }
   .badge{
@@ -204,88 +183,6 @@
     font-weight: 1100;
     font-size: 13px;
   }
-
-  .deductions{
-    margin:0;
-    padding-left: 16px;
-    color: rgba(17,18,38,.72);
-    line-height: 1.5;
-    font-size: 14px;
-  }
-
-  .choicechips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
-  .chip{
-    border-radius: 999px;
-    padding: 10px 12px;
-    border: 1px solid rgba(17,18,38,.12);
-    background: rgba(255,255,255,.60);
-    font-weight: 1100;
-    cursor:pointer;
-    transition: transform .12s ease;
-  }
-  .chip:hover{ transform:scale(1.03) }
-  .chip.active{
-    border-color: rgba(255,79,139,.35);
-    box-shadow: 0 10px 22px rgba(255,79,139,.18);
-  }
-
-  .callout{
-    padding: 12px 12px;
-    border-radius: 16px;
-    background: rgba(255,79,139,.09);
-    border: 1px solid rgba(255,79,139,.18);
-    color: rgba(120,10,55,.92);
-    font-weight: 1000;
-    line-height: 1.35;
-  }
-
-  .heart{
-    position:absolute;
-    left:50%;
-    top:50%;
-    opacity:0;
-    transform: translate(-50%,-50%);
-    animation: pop 900ms ease forwards;
-    pointer-events:none;
-    filter: drop-shadow(0 8px 10px rgba(0,0,0,.20));
-  }
-  @keyframes pop{
-    0%{opacity:0; transform:translate(-50%,-50%) scale(.6)}
-    15%{opacity:1}
-    100%{opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.25)}
-  }
-
-  /* CINEMATIC OPEN */
-  .blackout{
-    position:absolute; inset:0;
-    background:
-      linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.70)),
-      radial-gradient(900px 500px at 50% 60%, rgba(255,255,255,.06), transparent 60%);
-    display:flex; align-items:center; justify-content:center;
-    padding:24px;
-  }
-  .blackText{
-    max-width: 780px;
-    color: rgba(255,255,255,.92);
-    text-align:left;
-  }
-  .bigline{
-    font-size: clamp(20px, 3.1vw, 44px);
-    font-weight: 1100;
-    letter-spacing:-.6px;
-    line-height:1.05;
-    margin: 0;
-    min-height: 1.2em;
-  }
-  .subline{
-    margin-top:14px;
-    font-size: clamp(14px, 1.7vw, 18px);
-    color: rgba(255,255,255,.76);
-    line-height:1.55;
-    min-height: 4.5em;
-  }
-
-  /* music button */
   #musicToggle{
     position:fixed; right:16px; bottom:16px; z-index:9999;
     border:1px solid rgba(255,255,255,.25);
@@ -297,43 +194,26 @@
     cursor:pointer;
     backdrop-filter: blur(8px);
   }
-
-  .hidden{ display:none !important; }
 </style>
 </head>
-
 <body>
 
-<!-- Audio: MUST be bp.mp3 in your GitHub repo root -->
 <audio id="bgm" loop preload="auto">
   <source src="./bp.mp3" type="audio/mpeg">
 </audio>
 <button id="musicToggle">🔇 Music</button>
 
-<script>
-  // Sparkles
-  for (let i=0;i<18;i++){
-    const s=document.createElement("div");
-    s.className="sparkle";
-    s.style.left = Math.random()*100 + "vw";
-    s.style.top  = (Math.random()*100) + "vh";
-    s.style.animationDuration = (6 + Math.random()*7) + "s";
-    s.style.opacity = (0.10 + Math.random()*0.22);
-    document.body.appendChild(s);
-  }
-</script>
-
-<div class="wrap" id="arena">
+<div class="wrap">
   <div class="card" id="card">
     <div class="topbar">
       <div class="pill">💍 Where Is My Husband v12.0</div>
-      <div class="pill pill2" id="countdownPill">⏳ loading countdown…</div>
+      <div class="pill pill2" id="countdownPill">⏳ loading…</div>
     </div>
 
-    <!-- Screen 0: Cold Open (slow typed) -->
-    <div class="screen active" id="s0" style="position:relative; min-height: 420px;">
-      <div class="blackout">
-        <div class="blackText">
+    <!-- S0 -->
+    <div class="screen active" id="s0">
+      <div class="darkStage">
+        <div class="darkText">
           <p class="bigline" id="cold1"></p>
           <p class="bigline" id="cold2" style="margin-top:10px;"></p>
           <div class="subline" id="cold3"></div>
@@ -343,169 +223,148 @@
           </div>
 
           <div class="tiny" style="margin-top:10px; color:rgba(255,255,255,.68);">
-            (This site is in “slow-reader mode.” You’re welcome.)
+            Slow-reader mode: ON. Take your time, Shantanu.
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Screen 1: Renewal -->
-    <div class="content screen" id="s1">
-      <h1 id="hRenew"></h1>
-      <p id="pRenew"></p>
+    <!-- S1 -->
+    <div class="screen" id="s1">
+      <div class="content">
+        <h1 id="h1"></h1>
+        <p id="p1"></p>
 
-      <div class="grid">
-        <div class="panel">
-          <div class="label">Application summary</div>
-          <ul class="deductions" id="renewList"></ul>
-        </div>
-
-        <div class="panel">
-          <div class="label">Terms & Conditions</div>
-          <div class="callout" id="termsBox"></div>
-          <p class="tiny" style="margin-top:10px;">Binding in Dhruva’s court.</p>
-        </div>
-      </div>
-
-      <div class="buttons">
-        <button id="renewContinue" class="primary hidden">I Understand. Continue →</button>
-      </div>
-
-      <p class="tiny" id="renewHint"></p>
-    </div>
-
-    <!-- Screen 2: Audit (slower) -->
-    <div class="content screen" id="s2">
-      <h1 id="hAudit"></h1>
-      <p id="pAudit"></p>
-
-      <div class="panel">
-        <div class="label">Audit progress</div>
-        <div class="meter"><div class="bar" id="bar"></div></div>
-        <div class="log" id="log"></div>
-      </div>
-
-      <div class="grid" style="margin-top:14px;">
-        <div class="panel">
-          <div class="label">Score</div>
-          <div class="scoreRow">
-            <div class="scoreBig" id="scoreBig">100</div>
-            <div class="badge" id="badge">Pending</div>
+        <div class="grid">
+          <div class="panel">
+            <div class="label">Application summary</div>
+            <ul class="deductions" id="list1"></ul>
           </div>
-          <p class="tiny" id="scoreNote" style="margin-top:8px;"></p>
+
+          <div class="panel">
+            <div class="label">Terms & Conditions</div>
+            <div class="panel" style="background:rgba(255,79,139,.09); border:1px solid rgba(255,79,139,.18);">
+              <div id="terms" style="font-weight:1000; color: rgba(120,10,55,.92); white-space:pre-line; line-height:1.45;"></div>
+            </div>
+            <p class="tiny" style="margin-top:10px;">Binding in Dhruva’s court.</p>
+          </div>
         </div>
 
-        <div class="panel">
-          <div class="label">Deductions log</div>
-          <ul class="deductions" id="deductions"><li>— awaiting findings —</li></ul>
+        <div class="buttons">
+          <button id="toAudit" class="primary hidden">I Understand. Continue →</button>
         </div>
-      </div>
 
-      <div class="panel" style="margin-top:14px;">
-        <div class="label">Warnings</div>
-        <span class="warn" id="warning">CRITICAL DELAY IN PROPOSAL PIPELINE</span>
-        <p class="tiny" id="auditHint" style="margin-top:8px;"></p>
-      </div>
-
-      <div class="buttons">
-        <button id="auditContinue" class="primary hidden">Continue →</button>
+        <p class="tiny" id="hint1"></p>
       </div>
     </div>
 
-    <!-- Screen 3: Princess -->
-    <div class="content screen" id="s3">
-      <h1 id="hPrincess"></h1>
-      <p id="pPrincess"></p>
-
-      <div class="grid">
-        <div class="panel">
-          <div class="label">Tonight (handled by Dhruva)</div>
-          <ul class="deductions" id="tonightList"></ul>
-        </div>
+    <!-- S2 -->
+    <div class="screen" id="s2">
+      <div class="content">
+        <h1 id="h2"></h1>
+        <p id="p2"></p>
 
         <div class="panel">
-          <div class="label">Your job (Shantanu edition)</div>
-          <ul class="deductions" id="jobList"></ul>
+          <div class="label">Audit progress</div>
+          <div class="meter"><div class="bar" id="bar"></div></div>
+          <div id="log" class="tiny" style="margin-top:10px; white-space:pre-line; line-height:1.55; color: rgba(17,18,38,.78);"></div>
         </div>
-      </div>
 
-      <div class="panel" style="margin-top:14px;">
-        <div class="label">Choose your princess outfit</div>
-        <div class="choicechips" id="chips">
-          <div class="chip" data-outfit="Soft hoodie + shorts (cozy royalty)">Soft hoodie + shorts</div>
-          <div class="chip" data-outfit="Cute lounge set (girlfriend mode)">Cute lounge set</div>
-          <div class="chip" data-outfit="T-shirt + that face (illegal)">T-shirt + that face</div>
-          <div class="chip" data-outfit="Whatever Dhruva picked (obedient)">Whatever you picked</div>
+        <div class="grid" style="margin-top:14px;">
+          <div class="panel">
+            <div class="label">Score</div>
+            <div class="scoreRow">
+              <div class="scoreBig" id="score">100</div>
+              <div class="badge" id="badge">Pending</div>
+            </div>
+            <p class="tiny" id="scoreNote" style="margin-top:8px;"></p>
+          </div>
+
+          <div class="panel">
+            <div class="label">Deductions log</div>
+            <ul class="deductions" id="deduct"><li>— awaiting findings —</li></ul>
+          </div>
         </div>
-        <p class="tiny" id="outfitHint" style="margin-top:10px;"></p>
-      </div>
 
-      <div class="buttons">
-        <button id="princessContinue" class="primary hidden">Continue →</button>
+        <div class="panel" style="margin-top:14px;">
+          <div class="label">Warnings</div>
+          <span class="warn" id="warn">CRITICAL DELAY IN PROPOSAL PIPELINE</span>
+          <p class="tiny" id="auditHint" style="margin-top:8px;"></p>
+        </div>
+
+        <div class="buttons">
+          <button id="toFinal" class="primary hidden">Continue →</button>
+        </div>
       </div>
     </div>
 
-    <!-- Screen 4: Final -->
-    <div class="content screen" id="s4">
-      <h1 id="hFinal"></h1>
-      <p id="pFinal"></p>
+    <!-- S3 -->
+    <div class="screen" id="s3">
+      <div class="content">
+        <h1 id="h3"></h1>
+        <p id="p3"></p>
 
-      <div class="buttons">
-        <button id="yesFinal" class="primary">Yes (I’m Dhruva’s princess) 💘</button>
-        <button id="noFinal" class="secondary">No</button>
-      </div>
+        <div class="buttons">
+          <button id="yes" class="primary">Yes 💘</button>
+          <button id="no" class="secondary">No</button>
+        </div>
 
-      <div class="panel" style="margin-top:14px;">
-        <div class="label">Important note</div>
-        <p style="margin:0; color: rgba(17,18,38,.72); line-height:1.5;">
-          12 years. Still you. Still my favorite person.  
-          But respectfully, Shantanu… another year with <b>NO RING</b> was bold. 💍❌  
-          Tonight I’m spoiling you <i>and</i> roasting you. Balance.
-        </p>
+        <div class="panel" style="margin-top:14px;">
+          <div class="label">Important note</div>
+          <p style="margin:0; color: rgba(17,18,38,.72); line-height:1.5;">
+            12 years. Still you. Still my favorite person.
+            But respectfully, Shantanu… another year with <b>NO RING</b> was bold. 💍❌
+            Tonight I’m spoiling you <i>and</i> roasting you. Balance.
+          </p>
+        </div>
       </div>
     </div>
 
-    <!-- Screen 5: Approved -->
-    <div class="content screen" id="s5">
-      <h1>Approved. See you at 7. 💐💘</h1>
-      <p>Good choice, Shantanu. Dhruva knew you were smart.</p>
+    <!-- S4 -->
+    <div class="screen" id="s4">
+      <div class="content">
+        <h1>Approved. See you at 7. 💐💘</h1>
+        <p>Good choice, Shantanu. Dhruva knew you were smart.</p>
 
-      <div class="panel">
-        <div class="label">Instructions</div>
-        <ul class="deductions">
-          <li>Be ready at <b>7:00 PM</b></li>
-          <li>When the flowers arrive, say “thank you babe” like a proper princess</li>
-          <li>Do not ask “what are we doing” — just show up and be loved</li>
-          <li>Negotiations: denied</li>
-        </ul>
+        <div class="panel">
+          <div class="label">Instructions</div>
+          <ul class="deductions">
+            <li>Be ready at <b>7:00 PM</b></li>
+            <li>When the flowers arrive, say “thank you babe” like a proper princess</li>
+            <li>Do not ask “what are we doing” — just show up and be loved</li>
+            <li>Negotiations: denied</li>
+          </ul>
+        </div>
+
+        <div class="tiny" style="margin-top:12px;">— Dhruva 💅</div>
       </div>
-
-      <div class="panel" style="margin-top:14px;">
-        <div class="label">P.S.</div>
-        <p style="margin:0; color: rgba(17,18,38,.72); line-height:1.5;">
-          This is the part where you smile, melt, and realize how much Dhruva can do.  
-          And next year… maybe we finally locate my husband. 💍
-        </p>
-      </div>
-
-      <div class="tiny" style="margin-top:12px;">— Dhruva 💅</div>
     </div>
 
     <div class="footer">
-      <div class="tiny" id="footerTease">Slow-reader mode: ON.</div>
+      <div class="tiny" id="footer">Slow-reader mode is protecting the story.</div>
       <div class="sig">💘</div>
     </div>
   </div>
 </div>
 
 <script>
-  // Countdown to 7 PM (viewer local time)
-  const countdownPill = document.getElementById("countdownPill");
-  const targetHour = 19, targetMinute = 0;
+window.addEventListener("DOMContentLoaded", () => {
+  // ---------- Helpers ----------
+  const $ = (id) => document.getElementById(id);
+
+  const screens = ["s0","s1","s2","s3","s4"].map($);
+  function show(id){
+    screens.forEach(s=>s.classList.remove("active"));
+    $(id).classList.add("active");
+    window.scrollTo(0,0);
+  }
+
+  // Safe countdown
+  const countdownPill = $("countdownPill");
   function updateCountdown(){
     const now = new Date();
     const target = new Date(now);
-    target.setHours(targetHour, targetMinute, 0, 0);
+    target.setHours(19, 0, 0, 0);
     if (target < now) target.setDate(target.getDate()+1);
     const diff = target - now;
     const h = Math.floor(diff/1000/60/60);
@@ -516,9 +375,23 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Music controls (starts on first "continue")
-  const bgm = document.getElementById("bgm");
-  const musicToggle = document.getElementById("musicToggle");
+  // Typewriter (robust)
+  const TYPING_SPEED = 22;      // smaller = faster
+  const PAUSE = 420;
+
+  function sleep(ms){ return new Promise(r=>setTimeout(r, ms)); }
+
+  async function type(el, text, speed=TYPING_SPEED){
+    el.textContent = "";
+    for (let i=0;i<text.length;i++){
+      el.textContent += text[i];
+      await sleep(speed);
+    }
+  }
+
+  // ---------- Music ----------
+  const bgm = $("bgm");
+  const musicToggle = $("musicToggle");
   let musicPlaying = false;
 
   async function startMusic(){
@@ -528,13 +401,13 @@
       musicPlaying = true;
       musicToggle.textContent = "🔊 Music";
     }catch(e){
-      // If blocked, user can tap toggle.
+      // Ignore — user can toggle
     }
   }
 
-  musicToggle.addEventListener("click", async ()=>{
+  musicToggle.addEventListener("click", async () => {
     try{
-      if(!musicPlaying){
+      if (!musicPlaying){
         await bgm.play();
         bgm.volume = 0.55;
         musicPlaying = true;
@@ -547,337 +420,197 @@
     }catch(e){}
   });
 
-  // Screen navigation
-  const screens = ["s0","s1","s2","s3","s4","s5"].map(id=>document.getElementById(id));
-  function show(id){
-    screens.forEach(s=>s.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
-    window.scrollTo(0,0);
-  }
-
-  // Confetti hearts
-  const card = document.getElementById("card");
-  function confettiHearts(){
-    const hearts = ["💖","💘","💞","💗","✨","🥂","💐","💍"];
-    for (let i=0;i<26;i++){
-      const h = document.createElement("div");
-      h.className="heart";
-      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
-      h.style.setProperty("--dx", (Math.random()*680 - 340) + "px");
-      h.style.setProperty("--dy", (Math.random()*-540 - 150) + "px");
-      h.style.left = (50 + (Math.random()*18 - 9)) + "%";
-      h.style.top  = (58 + (Math.random()*16 - 8)) + "%";
-      h.style.fontSize = (16 + Math.random()*18) + "px";
-      card.appendChild(h);
-      setTimeout(()=>h.remove(), 950);
-    }
-  }
-
-  // Typewriter helper
-  const TYPING_SPEED = 24;      // lower = faster
-  const LINE_PAUSE_MS = 450;    // pause between lines
-
-  function typeInto(el, text, speed=TYPING_SPEED){
-    return new Promise(resolve=>{
-      el.innerHTML = "";
-      let i=0;
-      const timer = setInterval(()=>{
-        el.innerHTML += text[i] === "\n" ? "<br/>" : text[i];
-        i++;
-        if(i >= text.length){
-          clearInterval(timer);
-          resolve();
-        }
-      }, speed);
-    });
-  }
-
-  // Simple list render
-  function renderList(ul, items){
-    ul.innerHTML = items.map(x=>`<li>${x}</li>`).join("");
-  }
-
-  // Cold open: slow typed, then show continue
-  const cold1 = document.getElementById("cold1");
-  const cold2 = document.getElementById("cold2");
-  const cold3 = document.getElementById("cold3");
-  const coldContinue = document.getElementById("coldContinue");
-
+  // ---------- Screen 0 ----------
+  const coldContinue = $("coldContinue");
   async function runColdOpen(){
-    await typeInto(cold1, "Shantanu… where the hell is my husband? 💍");
-    await new Promise(r=>setTimeout(r, LINE_PAUSE_MS));
-    await typeInto(cold2, "What is taking him so long to find meee meee meee?");
-    await new Promise(r=>setTimeout(r, LINE_PAUSE_MS));
-    await typeInto(
-      cold3,
-      "System scan initiated…\nSearching nearby…\nHusband not found.\nLong-term boyfriend detected: 12 years (persistent, adorable, slightly delayed).\nPrimary user: Dhruva (tired of “soon”).",
-      14
-    );
+    await type($("cold1"), "Shantanu… where the hell is my husband? 💍");
+    await sleep(PAUSE);
+    await type($("cold2"), "What is taking him so long to find meee meee meee?");
+    await sleep(PAUSE);
+    $("cold3").textContent =
+      "System scan initiated…\n" +
+      "Searching nearby…\n" +
+      "Husband not found.\n" +
+      "Long-term boyfriend detected: 12 years (persistent, adorable, slightly delayed).\n" +
+      "Primary user: Dhruva (tired of “soon”).";
     coldContinue.classList.remove("hidden");
   }
 
-  // Screen 1 text (typed)
-  const hRenew = document.getElementById("hRenew");
-  const pRenew = document.getElementById("pRenew");
-  const renewList = document.getElementById("renewList");
-  const termsBox = document.getElementById("termsBox");
-  const renewContinue = document.getElementById("renewContinue");
-  const renewHint = document.getElementById("renewHint");
-
-  async function runRenewal(){
-    await typeInto(hRenew, "Annual Boyfriend Membership Renewal 📄", 16);
-    await new Promise(r=>setTimeout(r, 250));
-    await typeInto(pRenew, "Welcome, Shantanu. Your subscription is up for renewal.\nPlease submit your application for the Husband Upgrade™ (requested by Dhruva).", 13);
-
-    renderList(renewList, [
-      "<b>Relationship duration:</b> 12 years",
-      "Status: “Boyfriend (long-term, high potential)”",
-      "<b>Ring integration:</b> Not detected 💍❌",
-      "Excuse database: robust",
-      "Soft skills: elite (unfortunately adorable)"
-    ]);
-
-    await new Promise(r=>setTimeout(r, 250));
-    await typeInto(termsBox,
-      "By continuing, you acknowledge that:\n" +
-      "1) you will stop saying “soon”,\n" +
-      "2) you will accept acts of service without acting tough,\n" +
-      "3) you will enter princess mode for one (1) night.", 13
-    );
-
-    renewHint.textContent = "Proceed when you have finished reading (yes, I’m watching).";
-    renewContinue.classList.remove("hidden");
-  }
-
-  // Audit
-  const hAudit = document.getElementById("hAudit");
-  const pAudit = document.getElementById("pAudit");
-  const bar = document.getElementById("bar");
-  const log = document.getElementById("log");
-  const scoreBig = document.getElementById("scoreBig");
-  const badge = document.getElementById("badge");
-  const scoreNote = document.getElementById("scoreNote");
-  const deductions = document.getElementById("deductions");
-  const warning = document.getElementById("warning");
-  const auditHint = document.getElementById("auditHint");
-  const auditContinue = document.getElementById("auditContinue");
-
-  let score = 100;
-  function setScore(n){
-    score = Math.max(0, Math.min(100, n));
-    scoreBig.textContent = score;
-  }
-
-  async function runAudit(){
-    await typeInto(hAudit, "Evaluating Eligibility… 🧠💍", 16);
-    await new Promise(r=>setTimeout(r, 250));
-    await typeInto(pAudit, "Please hold. Running diagnostics on Shantanu’s “husband energy.”\n(This is a safe space. Mostly.)", 13);
-
-    setScore(100);
-    badge.textContent = "Evaluating";
-    deductions.innerHTML = "<li>— audit started —</li>";
-    log.innerHTML = "<span class='logline'>Initializing…</span>";
-    bar.style.width = "0%";
-    warning.textContent = "CRITICAL DELAY IN PROPOSAL PIPELINE";
-    scoreNote.textContent = "Starting at 100. Deductions may apply (they will).";
-    auditHint.textContent = "Read each deduction carefully, princess.";
-
-    const steps = [
-      {p:12, t:"Scanning for husband energy…", d:"-12: Has not been with Dhruva 24×7 this year (reduces score).", delta:12},
-      {p:28, t:"Checking proactive romance behavior…", d:"-15: Did not proactively over-compensate after 100 fights without being asked.", delta:15},
-      {p:44, t:"Public dominance display check…", d:"-20: Has not shown the world Dhruva dominates you equally (or more).", delta:20},
-      {p:60, t:"Excuse engine performance test…", d:"-18: Excuse generation speed = HIGH for everything.", delta:18},
-      {p:78, t:"Connecting to Ring API…", d:"-25: Another year with NO RING detected. 💍❌", delta:25},
-      {p:90, t:"Counter-checking: loyalty, love, history…", d:"+10: Emotional compatibility = elite. Cuddle compliance = dangerously high.", delta:-10},
-      {p:100,t:"Verdict compiling…", d:"Result: Upgrade eligible (barely). Mandatory princess mode tonight.", delta:0}
-    ];
-
-    const list = [];
-    for (let i=0;i<steps.length;i++){
-      const step = steps[i];
-      bar.style.width = step.p + "%";
-      log.innerHTML = `<span class="logline">${step.t}</span><span class="logline" style="opacity:.78;">${step.d}</span>`;
-
-      if (step.delta > 0) setScore(score - step.delta);
-      if (step.delta < 0) setScore(score + Math.abs(step.delta));
-
-      list.push(step.d);
-      deductions.innerHTML = list.map(x=>`<li>${x}</li>`).join("");
-
-      if (i === 4) warning.textContent = "WARNING: Proposal firmware outdated";
-      if (i === 5) warning.textContent = "NOTICE: Tonight’s plan will be handled by Dhruva 😌";
-
-      // Slow it down:
-      await new Promise(r=>setTimeout(r, 1700)); // <- increase for even slower
-    }
-
-    badge.textContent = "Approved (pending obedience)";
-    scoreNote.textContent = "Yes, you got roasted. No, you’re not escaping.";
-    auditHint.textContent = "Proceed when you have processed your feelings.";
-    auditContinue.classList.remove("hidden");
-  }
-
-  // Princess screen
-  const hPrincess = document.getElementById("hPrincess");
-  const pPrincess = document.getElementById("pPrincess");
-  const tonightList = document.getElementById("tonightList");
-  const jobList = document.getElementById("jobList");
-  const outfitHint = document.getElementById("outfitHint");
-  const princessContinue = document.getElementById("princessContinue");
-  let chosenOutfit = null;
-
-  async function runPrincess(){
-    await typeInto(hPrincess, "Princess Mode Assignment 👑", 16);
-    await new Promise(r=>setTimeout(r, 250));
-    await typeInto(pPrincess, "Since the proposal pipeline is… experiencing “buffering,”\nDhruva will temporarily assume husband duties for tonight.", 13);
-
-    renderList(tonightList, [
-      "Flowers: delivered 💐",
-      "Healthy dinner: delivered 🍽️",
-      "No-sugar ice cream: delivered 🍦",
-      "Blanket + movie + cuddles: mandatory 😌"
-    ]);
-
-    renderList(jobList, [
-      "Be ready at 7:00 PM",
-      "Wear something soft",
-      "Stop acting tough when you get flowers",
-      "Yes, you can borrow Dhruva’s lip gloss. Don’t make it weird."
-    ]);
-
-    outfitHint.textContent = "Pick an outfit to unlock the final confirmation.";
-  }
-
-  document.getElementById("chips").addEventListener("click", (e)=>{
-    const chip = e.target.closest(".chip");
-    if (!chip) return;
-    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
-    chip.classList.add("active");
-    chosenOutfit = chip.dataset.outfit;
-    outfitHint.textContent = `Selected: ${chosenOutfit}. Good princess.`;
-    princessContinue.classList.remove("hidden");
-  });
-
-  // Final screen
-  const hFinal = document.getElementById("hFinal");
-  const pFinal = document.getElementById("pFinal");
-
-  async function runFinal(){
-    await typeInto(hFinal, "Final Confirmation 😌", 16);
-    await new Promise(r=>setTimeout(r, 250));
-    await typeInto(pFinal, `Shantanu, do you accept this stay-in anniversary date AND agree to wear:\n“${chosenOutfit || "something soft"}”?`, 13);
-  }
-
-  // NO button dodge (final screen only)
-  const arena = document.getElementById("arena");
-  const footerTease = document.getElementById("footerTease");
-  let dodgeCount = 0;
-
-  window.addEventListener("mousemove", (e)=>{ window.__last = {x:e.clientX,y:e.clientY}; }, {passive:true});
-  window.addEventListener("touchstart", (e)=>{
-    const t=e.touches[0]; if(t) window.__last={x:t.clientX,y:t.clientY};
-  }, {passive:true});
-
-  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
-
-  function moveNo(btn, primaryBtn){
-    dodgeCount++;
-
-    if (!btn.dataset.abs){
-      btn.dataset.abs = "1";
-      const r = btn.getBoundingClientRect();
-      const a = arena.getBoundingClientRect();
-      btn.style.position="absolute";
-      btn.style.left = (r.left - a.left) + "px";
-      btn.style.top  = (r.top - a.top) + "px";
-    }
-
-    const a = arena.getBoundingClientRect();
-    const c = card.getBoundingClientRect();
-    const n = btn.getBoundingClientRect();
-    const pad = 14;
-
-    const minX = c.left - a.left + pad;
-    const minY = c.top  - a.top + pad;
-    const maxX = (c.right - a.left) - n.width - pad;
-    const maxY = (c.bottom - a.top) - n.height - pad;
-
-    const last = window.__last || {x:c.left + c.width/2, y:c.top + c.height/2};
-    const targetX = clamp((last.x - a.left) + (Math.random() > 0.5 ? 220 : -220), minX, maxX);
-    const targetY = clamp((last.y - a.top)  + (Math.random() > 0.5 ? 160 : -160), minY, maxY);
-
-    const jitterX = (Math.random()*160) - 80;
-    const jitterY = (Math.random()*120) - 60;
-
-    btn.style.left = clamp(targetX + jitterX, minX, maxX) + "px";
-    btn.style.top  = clamp(targetY + jitterY, minY, maxY) + "px";
-
-    const footerLines = [
-      "No is currently out of network.",
-      "No requires prior authorization.",
-      "No has been denied by the committee.",
-      "Ring API still not responding… interesting.",
-      "Shantanu, stop running. Read the page."
-    ];
-    footerTease.textContent = footerLines[(dodgeCount-1) % footerLines.length];
-
-    if (primaryBtn){
-      const scale = Math.min(1.18, 1 + dodgeCount*0.02);
-      primaryBtn.style.transform = `scale(${scale})`;
-    }
-  }
-
-  // Wire up the slow flow
-  const coldContinue = document.getElementById("coldContinue");
-  const renewContinue = document.getElementById("renewContinue");
-  const auditContinue = document.getElementById("auditContinue");
-  const princessContinue = document.getElementById("princessContinue");
-
-  coldContinue.addEventListener("click", async ()=>{
-    startMusic();        // music begins here (first click)
-    confettiHearts();
+  coldContinue.addEventListener("click", async () => {
+    startMusic();
     show("s1");
     await runRenewal();
   });
 
-  renewContinue.addEventListener("click", async ()=>{
-    confettiHearts();
+  // ---------- Screen 1 ----------
+  const toAudit = $("toAudit");
+  async function runRenewal(){
+    await type($("h1"), "Annual Boyfriend Membership Renewal 📄", 14);
+    await sleep(200);
+    $("p1").textContent =
+      "Welcome, Shantanu. Your subscription is up for renewal.\n" +
+      "Please submit your application for the Husband Upgrade™ (requested by Dhruva).";
+
+    $("list1").innerHTML = [
+      "<li><b>Relationship duration:</b> 12 years</li>",
+      "<li>Status: “Boyfriend (long-term, high potential)”</li>",
+      "<li><b>Ring integration:</b> Not detected 💍❌</li>",
+      "<li>Excuse database: robust</li>",
+      "<li>Soft skills: elite (unfortunately adorable)</li>"
+    ].join("");
+
+    $("terms").textContent =
+      "By continuing, you acknowledge that:\n" +
+      "1) you will stop saying “soon”,\n" +
+      "2) you will accept acts of service without acting tough,\n" +
+      "3) you will enter princess mode for one (1) night.";
+
+    $("hint1").textContent = "Proceed only after reading. Slowly. Like you do.";
+    toAudit.classList.remove("hidden");
+  }
+
+  toAudit.addEventListener("click", async () => {
     show("s2");
     await runAudit();
   });
 
-  auditContinue.addEventListener("click", async ()=>{
-    confettiHearts();
+  // ---------- Screen 2 (slower audit) ----------
+  const toFinal = $("toFinal");
+  let score = 100;
+  function setScore(n){
+    score = Math.max(0, Math.min(100, n));
+    $("score").textContent = score;
+  }
+
+  async function runAudit(){
+    await type($("h2"), "Evaluating Eligibility… 🧠💍", 14);
+    await sleep(200);
+    $("p2").textContent =
+      "Please hold. Running diagnostics on Shantanu’s “husband energy.”\n" +
+      "(This is a safe space. Mostly.)";
+
+    setScore(100);
+    $("badge").textContent = "Evaluating";
+    $("scoreNote").textContent = "Starting at 100. Deductions may apply (they will).";
+    $("auditHint").textContent = "Read each line. Don’t skim. This is personalized trauma.";
+    $("deduct").innerHTML = "<li>— audit started —</li>";
+    $("log").textContent = "Initializing…";
+    $("bar").style.width = "0%";
+    $("warn").textContent = "CRITICAL DELAY IN PROPOSAL PIPELINE";
+
+    const steps = [
+      {p:12,  title:"Scanning for husband energy…",     line:"-12: Has not been with Dhruva 24×7 this year (reduces score).", delta:12},
+      {p:28,  title:"Checking proactive romance…",      line:"-15: Did not proactively over-compensate after 100 fights without being asked.", delta:15},
+      {p:44,  title:"Public dominance display check…",  line:"-20: Has not shown the world Dhruva dominates you equally (or more).", delta:20},
+      {p:60,  title:"Excuse engine performance test…",  line:"-18: Excuse generation speed = HIGH for everything.", delta:18},
+      {p:78,  title:"Connecting to Ring API…",          line:"-25: Another year with NO RING detected. 💍❌", delta:25},
+      {p:90,  title:"Counter-checking love & loyalty…", line:"+10: Emotional compatibility = elite. Cuddle compliance = dangerously high.", delta:-10},
+      {p:100, title:"Verdict compiling…",               line:"Result: Upgrade eligible (barely). Mandatory princess mode tonight.", delta:0},
+    ];
+
+    const list = [];
+    for (let i=0;i<steps.length;i++){
+      const s = steps[i];
+      $("bar").style.width = s.p + "%";
+      $("log").textContent = s.title + "\n" + s.line;
+
+      if (s.delta > 0) setScore(score - s.delta);
+      if (s.delta < 0) setScore(score + Math.abs(s.delta));
+
+      list.push(s.line);
+      $("deduct").innerHTML = list.map(x=>`<li>${x}</li>`).join("");
+
+      if (i === 4) $("warn").textContent = "WARNING: Proposal firmware outdated";
+      if (i === 5) $("warn").textContent = "NOTICE: Tonight’s plan will be handled by Dhruva 😌";
+
+      // Slow it down for him:
+      await sleep(1800); // make 2400 if you want EVEN slower
+    }
+
+    $("badge").textContent = "Approved (pending obedience)";
+    $("scoreNote").textContent = "Proceed when you have processed your feelings.";
+    toFinal.classList.remove("hidden");
+  }
+
+  toFinal.addEventListener("click", async () => {
     show("s3");
-    await runPrincess();
+    await runFinalText();
   });
 
-  princessContinue.addEventListener("click", async ()=>{
-    confettiHearts();
+  // ---------- Screen 3 ----------
+  async function runFinalText(){
+    await type($("h3"), "Final Confirmation 😌", 14);
+    await sleep(250);
+    $("p3").textContent =
+      "Shantanu, do you accept this stay-in anniversary date tonight?\n" +
+      "Dhruva has planned everything. Your only job is to show up and be loved.";
+  }
+
+  // NO button dodge (so he eventually says yes)
+  const noBtn = $("no");
+  const yesBtn = $("yes");
+  let dodgeCount = 0;
+
+  function clamp(n,min,max){ return Math.max(min, Math.min(max, n)); }
+  window.addEventListener("mousemove", (e)=> window.__last = {x:e.clientX,y:e.clientY}, {passive:true});
+  window.addEventListener("touchstart", (e)=>{
+    const t=e.touches[0]; if(t) window.__last={x:t.clientX,y:t.clientY};
+  }, {passive:true});
+
+  function moveNo(){
+    dodgeCount++;
+    const wrap = document.querySelector(".wrap").getBoundingClientRect();
+    const card = $("card").getBoundingClientRect();
+    const n = noBtn.getBoundingClientRect();
+    const pad = 16;
+
+    if (!noBtn.dataset.abs){
+      noBtn.dataset.abs = "1";
+      noBtn.style.position = "absolute";
+      noBtn.style.left = (n.left - wrap.left) + "px";
+      noBtn.style.top  = (n.top  - wrap.top)  + "px";
+    }
+
+    const minX = (card.left - wrap.left) + pad;
+    const maxX = (card.right - wrap.left) - n.width - pad;
+    const minY = (card.top - wrap.top) + 220;
+    const maxY = (card.bottom - wrap.top) - n.height - pad;
+
+    const last = window.__last || {x: card.left + card.width/2, y: card.top + card.height/2};
+    const targetX = clamp((last.x - wrap.left) + (Math.random()>0.5 ? 220 : -220), minX, maxX);
+    const targetY = clamp((last.y - wrap.top)  + (Math.random()>0.5 ? 140 : -140), minY, maxY);
+
+    noBtn.style.left = clamp(targetX + (Math.random()*120-60), minX, maxX) + "px";
+    noBtn.style.top  = clamp(targetY + (Math.random()*100-50), minY, maxY) + "px";
+
+    const lines = [
+      "No is currently out of network.",
+      "No requires prior authorization.",
+      "No has been denied by Dhruva.",
+      "Shantanu… read the page. Stop running.",
+      "Ring API still not responding… interesting."
+    ];
+    $("footer").textContent = lines[(dodgeCount-1) % lines.length];
+    yesBtn.style.transform = `scale(${Math.min(1.18, 1 + dodgeCount*0.02)})`;
+  }
+
+  noBtn.addEventListener("mouseenter", moveNo);
+  noBtn.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(); });
+  noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(); }, {passive:false});
+
+  yesBtn.addEventListener("click", () => {
     show("s4");
-    await runFinal();
   });
 
-  // Final yes/no
-  const yesFinal = document.getElementById("yesFinal");
-  const noFinal = document.getElementById("noFinal");
-
-  noFinal.addEventListener("mouseenter", ()=>moveNo(noFinal, yesFinal));
-  noFinal.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal); });
-  noFinal.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal); }, {passive:false});
-
-  yesFinal.addEventListener("click", ()=>{
-    confettiHearts();
-    show("s5");
+  // Start
+  runColdOpen().catch(() => {
+    // fallback if typewriter fails
+    $("cold1").textContent = "Shantanu… where the hell is my husband? 💍";
+    $("cold2").textContent = "What is taking him so long to find meee meee meee?";
+    $("cold3").textContent =
+      "System scan initiated…\nSearching nearby…\nHusband not found.\nLong-term boyfriend detected: 12 years.\nPrimary user: Dhruva.";
+    coldContinue.classList.remove("hidden");
   });
-
- // Start cold open typing (SAFE MODE)
-runColdOpen().catch(() => {
-  // fallback if anything goes wrong
-  document.getElementById("cold1").textContent = "Shantanu… where the hell is my husband? 💍";
-  document.getElementById("cold2").textContent = "What is taking him so long to find meee meee meee?";
-  document.getElementById("cold3").innerHTML = "System scan initiated…<br/>Searching nearby…<br/><b>Husband not found.</b><br/>Long-term boyfriend detected: 12 years.<br/>Primary user: <b>Dhruva</b>.";
-  document.getElementById("coldContinue").classList.remove("hidden");
 });
 </script>
 </body>
