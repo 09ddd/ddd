@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>Untitled</title>
-    
-
-  </head>
-    
-  <body>
-  <!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8"/>
@@ -145,14 +134,14 @@
   }
   button:active{ transform:scale(.98) }
 
-  #primary{
+  .primary{
     background: linear-gradient(135deg, var(--pink), var(--pink2));
     color:white;
     box-shadow: 0 10px 26px rgba(255,79,139,.35);
   }
-  #primary:hover{ filter:brightness(1.05) }
+  .primary:hover{ filter:brightness(1.05) }
 
-  .noBtn{
+  .secondary{
     background: rgba(17,18,38,.07);
     border: 1px solid rgba(17,18,38,.12);
     color: rgba(17,18,38,.86);
@@ -183,7 +172,7 @@
     width:0%;
     background: linear-gradient(90deg, var(--mint), var(--pink2));
     border-radius: 999px;
-    transition: width .22s ease;
+    transition: width .35s ease;
   }
 
   .log{
@@ -276,37 +265,24 @@
     padding:24px;
   }
   .blackText{
-    max-width: 760px;
+    max-width: 780px;
     color: rgba(255,255,255,.92);
     text-align:left;
   }
-  .blackText .line{
+  .bigline{
     font-size: clamp(20px, 3.1vw, 44px);
     font-weight: 1100;
     letter-spacing:-.6px;
     line-height:1.05;
+    margin: 0;
+    min-height: 1.2em;
   }
-  .blackText .sub{
+  .subline{
     margin-top:14px;
     font-size: clamp(14px, 1.7vw, 18px);
     color: rgba(255,255,255,.76);
-    line-height:1.5;
-  }
-  .fadeIn{ animation: fadeIn .65s ease forwards; opacity:0; }
-  @keyframes fadeIn{ to{ opacity:1 } }
-
-  /* YOUR PHOTO BACKGROUND (zoomed in) */
-  .photoBg{
-    position:absolute;
-    inset:0;
-    background-image:
-      linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
-      url("https://drive.google.com/uc?export=view&id=1hgwIRHJAGhjf-v-xKTxFtWiAJvZ08xuE");
-    background-size: 135%;
-    background-position: center 35%;
-    background-repeat: no-repeat;
-    filter: saturate(1.05) contrast(1.05);
-    transform: scale(1.01);
+    line-height:1.55;
+    min-height: 4.5em;
   }
 
   /* music button */
@@ -321,12 +297,14 @@
     cursor:pointer;
     backdrop-filter: blur(8px);
   }
+
+  .hidden{ display:none !important; }
 </style>
 </head>
 
 <body>
 
-<!-- Audio (starts on click) -->
+<!-- Audio: MUST be bp.mp3 in your GitHub repo root -->
 <audio id="bgm" loop preload="auto">
   <source src="./bp.mp3" type="audio/mpeg">
 </audio>
@@ -339,8 +317,8 @@
     s.className="sparkle";
     s.style.left = Math.random()*100 + "vw";
     s.style.top  = (Math.random()*100) + "vh";
-    s.style.animationDuration = (5 + Math.random()*6) + "s";
-    s.style.opacity = (0.12 + Math.random()*0.22);
+    s.style.animationDuration = (6 + Math.random()*7) + "s";
+    s.style.opacity = (0.10 + Math.random()*0.22);
     document.body.appendChild(s);
   }
 </script>
@@ -352,36 +330,20 @@
       <div class="pill pill2" id="countdownPill">⏳ loading countdown…</div>
     </div>
 
-    <!-- Screen 0: Cold Open -->
+    <!-- Screen 0: Cold Open (slow typed) -->
     <div class="screen active" id="s0" style="position:relative; min-height: 420px;">
-      <div class="photoBg"></div>
       <div class="blackout">
         <div class="blackText">
-          <div class="line fadeIn" style="animation-delay:.05s;">
-            Shantanu… where the hell is my husband? 💍
-          </div>
-          <div class="line fadeIn" style="animation-delay:.55s; margin-top:8px;">
-            What is taking him so long to find meee meee meee?
-          </div>
-          <div class="sub fadeIn" style="animation-delay:1.1s;">
-            System scan initiated…<br/>
-            Searching nearby…<br/>
-            <span style="color:rgba(255,255,255,.92); font-weight:1100;">Husband not found.</span><br/>
-            Long-term boyfriend detected: <b>12 years</b> (persistent, adorable, slightly delayed).<br/>
-            Primary user: <b>Dhruva</b> (tired of “soon”).
+          <p class="bigline" id="cold1"></p>
+          <p class="bigline" id="cold2" style="margin-top:10px;"></p>
+          <div class="subline" id="cold3"></div>
+
+          <div class="buttons" style="margin-top:18px;">
+            <button id="coldContinue" class="primary hidden">Continue →</button>
           </div>
 
-          <div class="buttons" style="margin-top:16px;">
-            <button id="start" style="background:linear-gradient(135deg,var(--mint),var(--pink2)); color:#061016; font-weight:1200;">
-              Run Husband Upgrade Audit →
-            </button>
-            <button id="skip" style="background:rgba(255,255,255,.12); color:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.22);">
-              Skip to “Yes”
-            </button>
-          </div>
-
-          <div class="tiny fadeIn" style="animation-delay:1.45s; color:rgba(255,255,255,.70);">
-            (Warning: elite roasting + premium affection. Proceed anyway.)
+          <div class="tiny" style="margin-top:10px; color:rgba(255,255,255,.68);">
+            (This site is in “slow-reader mode.” You’re welcome.)
           </div>
         </div>
       </div>
@@ -389,61 +351,38 @@
 
     <!-- Screen 1: Renewal -->
     <div class="content screen" id="s1">
-      <h1>Annual Boyfriend Membership Renewal 📄</h1>
-      <p>
-        Welcome, Shantanu. Your subscription is up for renewal.<br/>
-        Please submit your application for the <b>Husband Upgrade™</b> (requested by Dhruva).
-      </p>
+      <h1 id="hRenew"></h1>
+      <p id="pRenew"></p>
 
       <div class="grid">
         <div class="panel">
-          <div class="label">Application summary (auto-filled because you’d procrastinate)</div>
-          <ul class="deductions">
-            <li>Relationship duration: <b>12 years</b></li>
-            <li>Status: “Boyfriend (long-term, high potential)”</li>
-            <li>Ring integration: <b>Not detected</b> 💍❌</li>
-            <li>Excuse database: “robust”</li>
-            <li>Soft skills: elite (unfortunately adorable)</li>
-          </ul>
+          <div class="label">Application summary</div>
+          <ul class="deductions" id="renewList"></ul>
         </div>
 
         <div class="panel">
           <div class="label">Terms & Conditions</div>
-          <div class="callout">
-            By continuing, you acknowledge that:<br/>
-            1) you will stop saying “soon”,<br/>
-            2) you will accept acts of service without acting tough,<br/>
-            3) you will enter princess mode for one (1) night.
-          </div>
+          <div class="callout" id="termsBox"></div>
           <p class="tiny" style="margin-top:10px;">Binding in Dhruva’s court.</p>
         </div>
       </div>
 
       <div class="buttons">
-        <button id="apply" style="background:linear-gradient(135deg,var(--pink),var(--pink2)); color:white;">
-          Submit Renewal Application ✅
-        </button>
-        <button id="no" class="noBtn">No</button>
+        <button id="renewContinue" class="primary hidden">I Understand. Continue →</button>
       </div>
 
-      <p class="tiny" id="tease">Try pressing “No.” The button is shy around commitment.</p>
+      <p class="tiny" id="renewHint"></p>
     </div>
 
-    <!-- Screen 2: Audit -->
+    <!-- Screen 2: Audit (slower) -->
     <div class="content screen" id="s2">
-      <h1>Evaluating Eligibility… 🧠💍</h1>
-      <p>
-        Please hold. Running diagnostics on Shantanu’s “husband energy.”
-        (This is a safe space. Mostly.)
-      </p>
+      <h1 id="hAudit"></h1>
+      <p id="pAudit"></p>
 
       <div class="panel">
         <div class="label">Audit progress</div>
         <div class="meter"><div class="bar" id="bar"></div></div>
-        <div class="log" id="log">
-          Initializing…
-          <span class="logline">Loading ring API…</span>
-        </div>
+        <div class="log" id="log"></div>
       </div>
 
       <div class="grid" style="margin-top:14px;">
@@ -453,55 +392,40 @@
             <div class="scoreBig" id="scoreBig">100</div>
             <div class="badge" id="badge">Pending</div>
           </div>
-          <p class="tiny" id="scoreNote" style="margin-top:8px;">
-            Starting at 100. Deductions may apply (they will).
-          </p>
+          <p class="tiny" id="scoreNote" style="margin-top:8px;"></p>
         </div>
 
         <div class="panel">
-          <div class="label">Deductions log (live)</div>
-          <ul class="deductions" id="deductions">
-            <li>— awaiting findings —</li>
-          </ul>
+          <div class="label">Deductions log</div>
+          <ul class="deductions" id="deductions"><li>— awaiting findings —</li></ul>
         </div>
       </div>
 
       <div class="panel" style="margin-top:14px;">
         <div class="label">Warnings</div>
         <span class="warn" id="warning">CRITICAL DELAY IN PROPOSAL PIPELINE</span>
-        <p class="tiny" style="margin-top:8px;">
-          Proposed fix: accept tonight’s date and enter princess mode immediately.
-        </p>
+        <p class="tiny" id="auditHint" style="margin-top:8px;"></p>
+      </div>
+
+      <div class="buttons">
+        <button id="auditContinue" class="primary hidden">Continue →</button>
       </div>
     </div>
 
-    <!-- Screen 3: Princess Mode -->
+    <!-- Screen 3: Princess -->
     <div class="content screen" id="s3">
-      <h1>Princess Mode Assignment 👑</h1>
-      <p>
-        Since the proposal pipeline is… experiencing “buffering,”
-        Dhruva will temporarily assume husband duties for tonight.
-      </p>
+      <h1 id="hPrincess"></h1>
+      <p id="pPrincess"></p>
 
       <div class="grid">
         <div class="panel">
           <div class="label">Tonight (handled by Dhruva)</div>
-          <ul class="deductions">
-            <li>Flowers: delivered 💐</li>
-            <li>Healthy dinner: delivered 🍽️</li>
-            <li>No-sugar ice cream: delivered 🍦</li>
-            <li>Blanket + movie + cuddles: mandatory 😌</li>
-          </ul>
+          <ul class="deductions" id="tonightList"></ul>
         </div>
 
         <div class="panel">
           <div class="label">Your job (Shantanu edition)</div>
-          <ul class="deductions">
-            <li>Be ready at 7:00 PM</li>
-            <li>Wear something soft</li>
-            <li>Stop acting tough when you get flowers</li>
-            <li>Yes, you can borrow Dhruva’s lip gloss. Don’t make it weird.</li>
-          </ul>
+          <ul class="deductions" id="jobList"></ul>
         </div>
       </div>
 
@@ -513,26 +437,22 @@
           <div class="chip" data-outfit="T-shirt + that face (illegal)">T-shirt + that face</div>
           <div class="chip" data-outfit="Whatever Dhruva picked (obedient)">Whatever you picked</div>
         </div>
-        <p class="tiny" id="outfitHint" style="margin-top:10px;">Pick one. Dhruva is taking notes.</p>
+        <p class="tiny" id="outfitHint" style="margin-top:10px;"></p>
       </div>
 
-      <div class="buttons" style="margin-top:14px;">
-        <button id="confirm" style="background:linear-gradient(135deg,var(--mint),var(--pink2)); color:#061016; font-weight:1200;">
-          Confirm Outfit ✅
-        </button>
+      <div class="buttons">
+        <button id="princessContinue" class="primary hidden">Continue →</button>
       </div>
     </div>
 
     <!-- Screen 4: Final -->
     <div class="content screen" id="s4">
-      <h1>Final Confirmation 😌</h1>
-      <p id="finalLine">Shantanu, do you accept this stay-in anniversary date and agree to be adored?</p>
+      <h1 id="hFinal"></h1>
+      <p id="pFinal"></p>
 
       <div class="buttons">
-        <button id="yesFinal" style="background:linear-gradient(135deg,var(--pink),var(--pink2)); color:white;">
-          Yes (I’m Dhruva’s princess) 💘
-        </button>
-        <button id="noFinal" class="noBtn">No</button>
+        <button id="yesFinal" class="primary">Yes (I’m Dhruva’s princess) 💘</button>
+        <button id="noFinal" class="secondary">No</button>
       </div>
 
       <div class="panel" style="margin-top:14px;">
@@ -572,7 +492,7 @@
     </div>
 
     <div class="footer">
-      <div class="tiny" id="footerTease">No button is currently out of network.</div>
+      <div class="tiny" id="footerTease">Slow-reader mode: ON.</div>
       <div class="sig">💘</div>
     </div>
   </div>
@@ -596,7 +516,7 @@
   setInterval(updateCountdown, 1000);
   updateCountdown();
 
-  // Music controls (starts on "start" click)
+  // Music controls (starts on first "continue")
   const bgm = document.getElementById("bgm");
   const musicToggle = document.getElementById("musicToggle");
   let musicPlaying = false;
@@ -604,11 +524,11 @@
   async function startMusic(){
     try{
       await bgm.play();
-      bgm.volume = 0.6;
+      bgm.volume = 0.55;
       musicPlaying = true;
       musicToggle.textContent = "🔊 Music";
     }catch(e){
-      // If blocked, user can hit the toggle.
+      // If blocked, user can tap toggle.
     }
   }
 
@@ -616,7 +536,7 @@
     try{
       if(!musicPlaying){
         await bgm.play();
-        bgm.volume = 0.6;
+        bgm.volume = 0.55;
         musicPlaying = true;
         musicToggle.textContent = "🔊 Music";
       }else{
@@ -628,17 +548,10 @@
   });
 
   // Screen navigation
-  const s0 = document.getElementById("s0");
-  const s1 = document.getElementById("s1");
-  const s2 = document.getElementById("s2");
-  const s3 = document.getElementById("s3");
-  const s4 = document.getElementById("s4");
-  const s5 = document.getElementById("s5");
-  const screens = [s0,s1,s2,s3,s4,s5];
-
-  function show(screen){
-    screens.forEach(x=>x.classList.remove("active"));
-    screen.classList.add("active");
+  const screens = ["s0","s1","s2","s3","s4","s5"].map(id=>document.getElementById(id));
+  function show(id){
+    screens.forEach(s=>s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
     window.scrollTo(0,0);
   }
 
@@ -646,12 +559,12 @@
   const card = document.getElementById("card");
   function confettiHearts(){
     const hearts = ["💖","💘","💞","💗","✨","🥂","💐","💍"];
-    for (let i=0;i<30;i++){
+    for (let i=0;i<26;i++){
       const h = document.createElement("div");
       h.className="heart";
       h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
-      h.style.setProperty("--dx", (Math.random()*720 - 360) + "px");
-      h.style.setProperty("--dy", (Math.random()*-580 - 150) + "px");
+      h.style.setProperty("--dx", (Math.random()*680 - 340) + "px");
+      h.style.setProperty("--dy", (Math.random()*-540 - 150) + "px");
       h.style.left = (50 + (Math.random()*18 - 9)) + "%";
       h.style.top  = (58 + (Math.random()*16 - 8)) + "%";
       h.style.fontSize = (16 + Math.random()*18) + "px";
@@ -660,22 +573,216 @@
     }
   }
 
-  // Track pointer for NO dodge
+  // Typewriter helper
+  const TYPING_SPEED = 24;      // lower = faster
+  const LINE_PAUSE_MS = 450;    // pause between lines
+
+  function typeInto(el, text, speed=TYPING_SPEED){
+    return new Promise(resolve=>{
+      el.innerHTML = "";
+      let i=0;
+      const timer = setInterval(()=>{
+        el.innerHTML += text[i] === "\n" ? "<br/>" : text[i];
+        i++;
+        if(i >= text.length){
+          clearInterval(timer);
+          resolve();
+        }
+      }, speed);
+    });
+  }
+
+  // Simple list render
+  function renderList(ul, items){
+    ul.innerHTML = items.map(x=>`<li>${x}</li>`).join("");
+  }
+
+  // Cold open: slow typed, then show continue
+  const cold1 = document.getElementById("cold1");
+  const cold2 = document.getElementById("cold2");
+  const cold3 = document.getElementById("cold3");
+  const coldContinue = document.getElementById("coldContinue");
+
+  async function runColdOpen(){
+    await typeInto(cold1, "Shantanu… where the hell is my husband? 💍");
+    await new Promise(r=>setTimeout(r, LINE_PAUSE_MS));
+    await typeInto(cold2, "What is taking him so long to find meee meee meee?");
+    await new Promise(r=>setTimeout(r, LINE_PAUSE_MS));
+    await typeInto(
+      cold3,
+      "System scan initiated…\nSearching nearby…\nHusband not found.\nLong-term boyfriend detected: 12 years (persistent, adorable, slightly delayed).\nPrimary user: Dhruva (tired of “soon”).",
+      14
+    );
+    coldContinue.classList.remove("hidden");
+  }
+
+  // Screen 1 text (typed)
+  const hRenew = document.getElementById("hRenew");
+  const pRenew = document.getElementById("pRenew");
+  const renewList = document.getElementById("renewList");
+  const termsBox = document.getElementById("termsBox");
+  const renewContinue = document.getElementById("renewContinue");
+  const renewHint = document.getElementById("renewHint");
+
+  async function runRenewal(){
+    await typeInto(hRenew, "Annual Boyfriend Membership Renewal 📄", 16);
+    await new Promise(r=>setTimeout(r, 250));
+    await typeInto(pRenew, "Welcome, Shantanu. Your subscription is up for renewal.\nPlease submit your application for the Husband Upgrade™ (requested by Dhruva).", 13);
+
+    renderList(renewList, [
+      "<b>Relationship duration:</b> 12 years",
+      "Status: “Boyfriend (long-term, high potential)”",
+      "<b>Ring integration:</b> Not detected 💍❌",
+      "Excuse database: robust",
+      "Soft skills: elite (unfortunately adorable)"
+    ]);
+
+    await new Promise(r=>setTimeout(r, 250));
+    await typeInto(termsBox,
+      "By continuing, you acknowledge that:\n" +
+      "1) you will stop saying “soon”,\n" +
+      "2) you will accept acts of service without acting tough,\n" +
+      "3) you will enter princess mode for one (1) night.", 13
+    );
+
+    renewHint.textContent = "Proceed when you have finished reading (yes, I’m watching).";
+    renewContinue.classList.remove("hidden");
+  }
+
+  // Audit
+  const hAudit = document.getElementById("hAudit");
+  const pAudit = document.getElementById("pAudit");
+  const bar = document.getElementById("bar");
+  const log = document.getElementById("log");
+  const scoreBig = document.getElementById("scoreBig");
+  const badge = document.getElementById("badge");
+  const scoreNote = document.getElementById("scoreNote");
+  const deductions = document.getElementById("deductions");
+  const warning = document.getElementById("warning");
+  const auditHint = document.getElementById("auditHint");
+  const auditContinue = document.getElementById("auditContinue");
+
+  let score = 100;
+  function setScore(n){
+    score = Math.max(0, Math.min(100, n));
+    scoreBig.textContent = score;
+  }
+
+  async function runAudit(){
+    await typeInto(hAudit, "Evaluating Eligibility… 🧠💍", 16);
+    await new Promise(r=>setTimeout(r, 250));
+    await typeInto(pAudit, "Please hold. Running diagnostics on Shantanu’s “husband energy.”\n(This is a safe space. Mostly.)", 13);
+
+    setScore(100);
+    badge.textContent = "Evaluating";
+    deductions.innerHTML = "<li>— audit started —</li>";
+    log.innerHTML = "<span class='logline'>Initializing…</span>";
+    bar.style.width = "0%";
+    warning.textContent = "CRITICAL DELAY IN PROPOSAL PIPELINE";
+    scoreNote.textContent = "Starting at 100. Deductions may apply (they will).";
+    auditHint.textContent = "Read each deduction carefully, princess.";
+
+    const steps = [
+      {p:12, t:"Scanning for husband energy…", d:"-12: Has not been with Dhruva 24×7 this year (reduces score).", delta:12},
+      {p:28, t:"Checking proactive romance behavior…", d:"-15: Did not proactively over-compensate after 100 fights without being asked.", delta:15},
+      {p:44, t:"Public dominance display check…", d:"-20: Has not shown the world Dhruva dominates you equally (or more).", delta:20},
+      {p:60, t:"Excuse engine performance test…", d:"-18: Excuse generation speed = HIGH for everything.", delta:18},
+      {p:78, t:"Connecting to Ring API…", d:"-25: Another year with NO RING detected. 💍❌", delta:25},
+      {p:90, t:"Counter-checking: loyalty, love, history…", d:"+10: Emotional compatibility = elite. Cuddle compliance = dangerously high.", delta:-10},
+      {p:100,t:"Verdict compiling…", d:"Result: Upgrade eligible (barely). Mandatory princess mode tonight.", delta:0}
+    ];
+
+    const list = [];
+    for (let i=0;i<steps.length;i++){
+      const step = steps[i];
+      bar.style.width = step.p + "%";
+      log.innerHTML = `<span class="logline">${step.t}</span><span class="logline" style="opacity:.78;">${step.d}</span>`;
+
+      if (step.delta > 0) setScore(score - step.delta);
+      if (step.delta < 0) setScore(score + Math.abs(step.delta));
+
+      list.push(step.d);
+      deductions.innerHTML = list.map(x=>`<li>${x}</li>`).join("");
+
+      if (i === 4) warning.textContent = "WARNING: Proposal firmware outdated";
+      if (i === 5) warning.textContent = "NOTICE: Tonight’s plan will be handled by Dhruva 😌";
+
+      // Slow it down:
+      await new Promise(r=>setTimeout(r, 1700)); // <- increase for even slower
+    }
+
+    badge.textContent = "Approved (pending obedience)";
+    scoreNote.textContent = "Yes, you got roasted. No, you’re not escaping.";
+    auditHint.textContent = "Proceed when you have processed your feelings.";
+    auditContinue.classList.remove("hidden");
+  }
+
+  // Princess screen
+  const hPrincess = document.getElementById("hPrincess");
+  const pPrincess = document.getElementById("pPrincess");
+  const tonightList = document.getElementById("tonightList");
+  const jobList = document.getElementById("jobList");
+  const outfitHint = document.getElementById("outfitHint");
+  const princessContinue = document.getElementById("princessContinue");
+  let chosenOutfit = null;
+
+  async function runPrincess(){
+    await typeInto(hPrincess, "Princess Mode Assignment 👑", 16);
+    await new Promise(r=>setTimeout(r, 250));
+    await typeInto(pPrincess, "Since the proposal pipeline is… experiencing “buffering,”\nDhruva will temporarily assume husband duties for tonight.", 13);
+
+    renderList(tonightList, [
+      "Flowers: delivered 💐",
+      "Healthy dinner: delivered 🍽️",
+      "No-sugar ice cream: delivered 🍦",
+      "Blanket + movie + cuddles: mandatory 😌"
+    ]);
+
+    renderList(jobList, [
+      "Be ready at 7:00 PM",
+      "Wear something soft",
+      "Stop acting tough when you get flowers",
+      "Yes, you can borrow Dhruva’s lip gloss. Don’t make it weird."
+    ]);
+
+    outfitHint.textContent = "Pick an outfit to unlock the final confirmation.";
+  }
+
+  document.getElementById("chips").addEventListener("click", (e)=>{
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+    chip.classList.add("active");
+    chosenOutfit = chip.dataset.outfit;
+    outfitHint.textContent = `Selected: ${chosenOutfit}. Good princess.`;
+    princessContinue.classList.remove("hidden");
+  });
+
+  // Final screen
+  const hFinal = document.getElementById("hFinal");
+  const pFinal = document.getElementById("pFinal");
+
+  async function runFinal(){
+    await typeInto(hFinal, "Final Confirmation 😌", 16);
+    await new Promise(r=>setTimeout(r, 250));
+    await typeInto(pFinal, `Shantanu, do you accept this stay-in anniversary date AND agree to wear:\n“${chosenOutfit || "something soft"}”?`, 13);
+  }
+
+  // NO button dodge (final screen only)
+  const arena = document.getElementById("arena");
+  const footerTease = document.getElementById("footerTease");
+  let dodgeCount = 0;
+
   window.addEventListener("mousemove", (e)=>{ window.__last = {x:e.clientX,y:e.clientY}; }, {passive:true});
   window.addEventListener("touchstart", (e)=>{
     const t=e.touches[0]; if(t) window.__last={x:t.clientX,y:t.clientY};
   }, {passive:true});
 
-  const arena = document.getElementById("arena");
-  const footerTease = document.getElementById("footerTease");
-  let dodgeCount = 0;
-
   function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
 
-  function moveNo(btn, primaryBtn, teaseEl){
+  function moveNo(btn, primaryBtn){
     dodgeCount++;
 
-    // Make *this specific button* absolute once (per button)
     if (!btn.dataset.abs){
       btn.dataset.abs = "1";
       const r = btn.getBoundingClientRect();
@@ -705,161 +812,67 @@
     btn.style.left = clamp(targetX + jitterX, minX, maxX) + "px";
     btn.style.top  = clamp(targetY + jitterY, minY, maxY) + "px";
 
-    const lines = [
-      "No is currently out of network.",
-      "No button is shy around commitment.",
-      "Ring API still not responding… interesting.",
-      "Shantanu you forgot your lip gloss, princess.",
-      "Take Dhruva’s actually. Don’t fight it.",
-      "Excuse database: robust. Approval: pending.",
-      "If you hit no again, Dhruva sends TWO bouquets.",
-      "This button has trauma from ‘soon’.",
-      "Press YES and stop acting new."
-    ];
-    if (teaseEl) teaseEl.textContent = lines[Math.min(dodgeCount-1, lines.length-1)];
-
     const footerLines = [
-      "No is not HIPAA-compliant.",
+      "No is currently out of network.",
       "No requires prior authorization.",
       "No has been denied by the committee.",
-      "No is experiencing emotional buffering.",
-      "No is temporarily unavailable (cute)."
+      "Ring API still not responding… interesting.",
+      "Shantanu, stop running. Read the page."
     ];
     footerTease.textContent = footerLines[(dodgeCount-1) % footerLines.length];
 
     if (primaryBtn){
-      const scale = Math.min(1.24, 1 + dodgeCount*0.03);
+      const scale = Math.min(1.18, 1 + dodgeCount*0.02);
       primaryBtn.style.transform = `scale(${scale})`;
     }
   }
 
-  // Buttons
-  const startBtn = document.getElementById("start");
-  const skipBtn  = document.getElementById("skip");
-  const applyBtn = document.getElementById("apply");
-  const noBtn    = document.getElementById("no");
-  const tease    = document.getElementById("tease");
+  // Wire up the slow flow
+  const coldContinue = document.getElementById("coldContinue");
+  const renewContinue = document.getElementById("renewContinue");
+  const auditContinue = document.getElementById("auditContinue");
+  const princessContinue = document.getElementById("princessContinue");
 
-  startBtn.addEventListener("click", ()=>{
-    startMusic();
-    show(s1);
-  });
-  skipBtn.addEventListener("click", ()=>{
-    startMusic();
-    show(s1);
+  coldContinue.addEventListener("click", async ()=>{
+    startMusic();        // music begins here (first click)
     confettiHearts();
+    show("s1");
+    await runRenewal();
   });
 
-  // Screen 1: NO dodges
-  noBtn.addEventListener("mouseenter", ()=>moveNo(noBtn, applyBtn, tease));
-  noBtn.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noBtn, applyBtn, tease); });
-  noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noBtn, applyBtn, tease); }, {passive:false});
-
-  // Apply -> audit
-  applyBtn.addEventListener("click", ()=>{
+  renewContinue.addEventListener("click", async ()=>{
     confettiHearts();
-    show(s2);
-    runAudit();
+    show("s2");
+    await runAudit();
   });
 
-  // Audit logic
-  const bar = document.getElementById("bar");
-  const log = document.getElementById("log");
-  const scoreBig = document.getElementById("scoreBig");
-  const badge = document.getElementById("badge");
-  const scoreNote = document.getElementById("scoreNote");
-  const deductions = document.getElementById("deductions");
-  const warning = document.getElementById("warning");
-
-  let score = 100;
-  function setScore(n){
-    score = Math.max(0, Math.min(100, n));
-    scoreBig.textContent = score;
-  }
-
-  function runAudit(){
-    setScore(100);
-    badge.textContent = "Evaluating";
-    deductions.innerHTML = "<li>— audit started —</li>";
-    bar.style.width = "0%";
-    warning.textContent = "CRITICAL DELAY IN PROPOSAL PIPELINE";
-
-    const steps = [
-      {p:12, t:"Scanning for husband energy… found: boyfriend comfort mode v12.0 (Shantanu edition).", d:"-12: Has not been with Dhruva 24×7 this year (reduces score).", delta:12},
-      {p:28, t:"Checking proactive romance behavior…", d:"-15: Did not proactively over-compensate after 100 fights without being asked.", delta:15},
-      {p:44, t:"Public dominance display check…", d:"-20: Has not shown the world Dhruva dominates you equally (or more).", delta:20},
-      {p:60, t:"Excuse engine performance test…", d:"-18: Excuse generation speed = HIGH for everything.", delta:18},
-      {p:78, t:"Connecting to Ring API… timeout.", d:"-25: Another year with NO RING detected. 💍❌", delta:25},
-      {p:90, t:"Counter-checking: loyalty, love, history…", d:"+10: Emotional compatibility = elite. Cuddle compliance = dangerously high.", delta:-10},
-      {p:100,t:"Verdict compiling…", d:"Result: Upgrade eligible (barely). Mandatory princess mode tonight.", delta:0}
-    ];
-
-    const list = [];
-    let i=0;
-    const timer = setInterval(()=>{
-      const step = steps[i];
-      bar.style.width = step.p + "%";
-      log.innerHTML = `<span class="logline">${step.t}</span><span class="logline" style="opacity:.75;">${step.d}</span>`;
-
-      if (step.delta > 0) setScore(score - step.delta);
-      if (step.delta < 0) setScore(score + Math.abs(step.delta));
-
-      list.push(step.d);
-      deductions.innerHTML = list.map(x=>`<li>${x}</li>`).join("");
-
-      if (i === 4) warning.textContent = "WARNING: Proposal firmware outdated";
-      if (i === 5) warning.textContent = "NOTICE: Tonight’s plan will be handled by Dhruva 😌";
-
-      i++;
-      if (i >= steps.length){
-        clearInterval(timer);
-        badge.textContent = "Approved (pending obedience)";
-        scoreNote.textContent = "Yes, you got roasted. No, you’re not escaping.";
-        setTimeout(()=>show(s3), 850);
-      }
-    }, 950);
-  }
-
-  // Outfit selection
-  const chips = document.getElementById("chips");
-  const outfitHint = document.getElementById("outfitHint");
-  const confirm = document.getElementById("confirm");
-  let chosenOutfit = null;
-
-  chips.addEventListener("click", (e)=>{
-    const chip = e.target.closest(".chip");
-    if (!chip) return;
-    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
-    chip.classList.add("active");
-    chosenOutfit = chip.dataset.outfit;
-    outfitHint.textContent = `Selected: ${chosenOutfit}. Cute.`;
-  });
-
-  confirm.addEventListener("click", ()=>{
+  auditContinue.addEventListener("click", async ()=>{
     confettiHearts();
-    show(s4);
-    if (chosenOutfit){
-      document.getElementById("finalLine").textContent =
-        `Shantanu, do you accept this stay-in anniversary date AND agree to wear: “${chosenOutfit}”? 😌`;
-    }
+    show("s3");
+    await runPrincess();
   });
 
-  // Final yes/no with dodging NO
+  princessContinue.addEventListener("click", async ()=>{
+    confettiHearts();
+    show("s4");
+    await runFinal();
+  });
+
+  // Final yes/no
   const yesFinal = document.getElementById("yesFinal");
   const noFinal = document.getElementById("noFinal");
 
-  noFinal.addEventListener("mouseenter", ()=>moveNo(noFinal, yesFinal, null));
-  noFinal.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal, null); });
-  noFinal.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal, null); }, {passive:false});
+  noFinal.addEventListener("mouseenter", ()=>moveNo(noFinal, yesFinal));
+  noFinal.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal); });
+  noFinal.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal); }, {passive:false});
 
   yesFinal.addEventListener("click", ()=>{
     confettiHearts();
-    show(s5);
+    show("s5");
   });
+
+  // Start cold open typing
+  runColdOpen();
 </script>
 </body>
-</html>
-    
-  </body>
-  
 </html>
