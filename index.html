@@ -871,8 +871,14 @@
     show("s5");
   });
 
-  // Start cold open typing
-  runColdOpen();
+ // Start cold open typing (SAFE MODE)
+runColdOpen().catch(() => {
+  // fallback if anything goes wrong
+  document.getElementById("cold1").textContent = "Shantanu… where the hell is my husband? 💍";
+  document.getElementById("cold2").textContent = "What is taking him so long to find meee meee meee?";
+  document.getElementById("cold3").innerHTML = "System scan initiated…<br/>Searching nearby…<br/><b>Husband not found.</b><br/>Long-term boyfriend detected: 12 years.<br/>Primary user: <b>Dhruva</b>.";
+  document.getElementById("coldContinue").classList.remove("hidden");
+});
 </script>
 </body>
 </html>
