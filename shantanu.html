@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Untitled</title>
+    
+
+  </head>
+    
+  <body>
+  <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Where Is My Husband? 💍</title>
+
+<style>
+  :root{
+    --bg1:#070815;
+    --bg2:#2a0f58;
+    --card: rgba(255,255,255,.92);
+    --ink:#111226;
+    --muted: rgba(17,18,38,.70);
+    --pink:#ff4f8b;
+    --pink2:#ff86b7;
+    --mint:#37f2c8;
+    --line: rgba(17,18,38,.10);
+    --shadow: 0 22px 80px rgba(0,0,0,.45);
+    --radius: 26px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:grid; place-items:center;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background:
+      radial-gradient(900px 520px at 18% 18%, rgba(255,79,139,.28), transparent 60%),
+      radial-gradient(900px 650px at 82% 26%, rgba(55,242,200,.18), transparent 60%),
+      radial-gradient(1200px 760px at 50% 92%, rgba(255,134,183,.13), transparent 60%),
+      linear-gradient(135deg, var(--bg1), var(--bg2));
+    overflow:hidden;
+    color:var(--ink);
+  }
+
+  /* cinematic grain */
+  body:before{
+    content:"";
+    position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+    opacity:.20;
+    pointer-events:none;
+    mix-blend-mode:overlay;
+  }
+
+  .sparkle{
+    position:fixed; width:6px;height:6px;border-radius:999px;
+    background: rgba(255,255,255,.75); opacity:.18;
+    animation: float 7s linear infinite; pointer-events:none;
+  }
+  @keyframes float{ from{transform:translateY(30px)} to{transform:translateY(-110vh)} }
+
+  .wrap{ width:min(980px, 95vw); padding:18px; position:relative; }
+  .card{
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.30);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow:hidden;
+    position:relative;
+  }
+
+  .topbar{
+    display:flex; gap:10px; align-items:center; flex-wrap:wrap;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,.55);
+  }
+  .pill{
+    padding: 8px 12px; border-radius:999px;
+    font-weight: 1000; font-size: 13px; letter-spacing:.2px;
+    background: rgba(255,79,139,.10);
+    border: 1px solid rgba(255,79,139,.22);
+    color:#b11052;
+  }
+  .pill2{
+    background: rgba(55,242,200,.12);
+    border: 1px solid rgba(55,242,200,.22);
+    color:#0b5a4f;
+  }
+
+  .content{ padding: 22px 22px 18px 22px; }
+  h1{
+    margin:0 0 10px 0;
+    font-size: clamp(26px, 3.2vw, 42px);
+    line-height:1.05;
+    letter-spacing:-.5px;
+  }
+  p{
+    margin:0 0 14px 0;
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: var(--muted);
+  }
+
+  .panel{
+    border-radius: 18px;
+    border: 1px solid var(--line);
+    background: rgba(255,255,255,.62);
+    padding: 14px;
+  }
+  .label{
+    font-weight: 1100;
+    font-size: 13px;
+    letter-spacing:.2px;
+    color: rgba(17,18,38,.78);
+    margin-bottom:8px;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 860px){ .grid{ grid-template-columns:1fr; } }
+
+  .buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:14px;
+    align-items:center;
+  }
+  button{
+    border:0;
+    border-radius: 999px;
+    padding: 14px 18px;
+    font-size: 16px;
+    font-weight: 1100;
+    cursor:pointer;
+    user-select:none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform .12s ease, filter .12s ease, opacity .12s ease;
+    position:relative;
+  }
+  button:active{ transform:scale(.98) }
+
+  #primary{
+    background: linear-gradient(135deg, var(--pink), var(--pink2));
+    color:white;
+    box-shadow: 0 10px 26px rgba(255,79,139,.35);
+  }
+  #primary:hover{ filter:brightness(1.05) }
+
+  .noBtn{
+    background: rgba(17,18,38,.07);
+    border: 1px solid rgba(17,18,38,.12);
+    color: rgba(17,18,38,.86);
+  }
+
+  .tiny{ font-size: 13px; color: rgba(17,18,38,.62); }
+  .footer{
+    padding: 14px 18px 18px 18px;
+    display:flex; flex-wrap:wrap;
+    gap:10px; align-items:center; justify-content: space-between;
+    border-top: 1px solid var(--line);
+    background: rgba(255,255,255,.52);
+  }
+  .sig{ font-weight: 1100; color: rgba(17,18,38,.75); }
+
+  .screen{ display:none }
+  .screen.active{ display:block }
+
+  .meter{
+    height: 12px;
+    border-radius: 999px;
+    background: rgba(17,18,38,.08);
+    overflow:hidden;
+    border: 1px solid rgba(17,18,38,.08);
+  }
+  .bar{
+    height:100%;
+    width:0%;
+    background: linear-gradient(90deg, var(--mint), var(--pink2));
+    border-radius: 999px;
+    transition: width .22s ease;
+  }
+
+  .log{
+    margin:10px 0 0 0;
+    font-size: 14px;
+    color: rgba(17,18,38,.78);
+    line-height:1.45;
+  }
+  .logline{ display:block; margin-top:6px; }
+  .warn{
+    display:inline-block;
+    padding:6px 10px;
+    border-radius:999px;
+    background: rgba(255,79,139,.10);
+    border:1px solid rgba(255,79,139,.22);
+    color:#a10e4b;
+    font-weight: 1000;
+    font-size: 13px;
+  }
+
+  .scoreRow{ display:flex; justify-content:space-between; align-items:center; gap:10px; }
+  .scoreBig{ font-size: 34px; font-weight: 1200; letter-spacing:-.6px; }
+  .badge{
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(55,242,200,.12);
+    border: 1px solid rgba(55,242,200,.24);
+    color:#0b5a4f;
+    font-weight: 1100;
+    font-size: 13px;
+  }
+
+  .deductions{
+    margin:0;
+    padding-left: 16px;
+    color: rgba(17,18,38,.72);
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  .choicechips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+  .chip{
+    border-radius: 999px;
+    padding: 10px 12px;
+    border: 1px solid rgba(17,18,38,.12);
+    background: rgba(255,255,255,.60);
+    font-weight: 1100;
+    cursor:pointer;
+    transition: transform .12s ease;
+  }
+  .chip:hover{ transform:scale(1.03) }
+  .chip.active{
+    border-color: rgba(255,79,139,.35);
+    box-shadow: 0 10px 22px rgba(255,79,139,.18);
+  }
+
+  .callout{
+    padding: 12px 12px;
+    border-radius: 16px;
+    background: rgba(255,79,139,.09);
+    border: 1px solid rgba(255,79,139,.18);
+    color: rgba(120,10,55,.92);
+    font-weight: 1000;
+    line-height: 1.35;
+  }
+
+  .heart{
+    position:absolute;
+    left:50%;
+    top:50%;
+    opacity:0;
+    transform: translate(-50%,-50%);
+    animation: pop 900ms ease forwards;
+    pointer-events:none;
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,.20));
+  }
+  @keyframes pop{
+    0%{opacity:0; transform:translate(-50%,-50%) scale(.6)}
+    15%{opacity:1}
+    100%{opacity:0; transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.25)}
+  }
+
+  /* CINEMATIC OPEN */
+  .blackout{
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(0,0,0,.85), rgba(0,0,0,.70)),
+      radial-gradient(900px 500px at 50% 60%, rgba(255,255,255,.06), transparent 60%);
+    display:flex; align-items:center; justify-content:center;
+    padding:24px;
+  }
+  .blackText{
+    max-width: 760px;
+    color: rgba(255,255,255,.92);
+    text-align:left;
+  }
+  .blackText .line{
+    font-size: clamp(20px, 3.1vw, 44px);
+    font-weight: 1100;
+    letter-spacing:-.6px;
+    line-height:1.05;
+  }
+  .blackText .sub{
+    margin-top:14px;
+    font-size: clamp(14px, 1.7vw, 18px);
+    color: rgba(255,255,255,.76);
+    line-height:1.5;
+  }
+  .fadeIn{ animation: fadeIn .65s ease forwards; opacity:0; }
+  @keyframes fadeIn{ to{ opacity:1 } }
+
+  /* YOUR PHOTO BACKGROUND (zoomed in) */
+  .photoBg{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55)),
+      url("https://drive.google.com/uc?export=view&id=1hgwIRHJAGhjf-v-xKTxFtWiAJvZ08xuE");
+    background-size: 135%;
+    background-position: center 35%;
+    background-repeat: no-repeat;
+    filter: saturate(1.05) contrast(1.05);
+    transform: scale(1.01);
+  }
+
+  /* music button */
+  #musicToggle{
+    position:fixed; right:16px; bottom:16px; z-index:9999;
+    border:1px solid rgba(255,255,255,.25);
+    background:rgba(0,0,0,.35);
+    color:white;
+    padding:10px 14px;
+    border-radius:999px;
+    font-weight:900;
+    cursor:pointer;
+    backdrop-filter: blur(8px);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- Audio (starts on click) -->
+<audio id="bgm" loop preload="auto">
+  <source src="./bp.mp3" type="audio/mpeg">
+</audio>
+<button id="musicToggle">🔇 Music</button>
+
+<script>
+  // Sparkles
+  for (let i=0;i<18;i++){
+    const s=document.createElement("div");
+    s.className="sparkle";
+    s.style.left = Math.random()*100 + "vw";
+    s.style.top  = (Math.random()*100) + "vh";
+    s.style.animationDuration = (5 + Math.random()*6) + "s";
+    s.style.opacity = (0.12 + Math.random()*0.22);
+    document.body.appendChild(s);
+  }
+</script>
+
+<div class="wrap" id="arena">
+  <div class="card" id="card">
+    <div class="topbar">
+      <div class="pill">💍 Where Is My Husband v12.0</div>
+      <div class="pill pill2" id="countdownPill">⏳ loading countdown…</div>
+    </div>
+
+    <!-- Screen 0: Cold Open -->
+    <div class="screen active" id="s0" style="position:relative; min-height: 420px;">
+      <div class="photoBg"></div>
+      <div class="blackout">
+        <div class="blackText">
+          <div class="line fadeIn" style="animation-delay:.05s;">
+            Shantanu… where the hell is my husband? 💍
+          </div>
+          <div class="line fadeIn" style="animation-delay:.55s; margin-top:8px;">
+            What is taking him so long to find meee meee meee?
+          </div>
+          <div class="sub fadeIn" style="animation-delay:1.1s;">
+            System scan initiated…<br/>
+            Searching nearby…<br/>
+            <span style="color:rgba(255,255,255,.92); font-weight:1100;">Husband not found.</span><br/>
+            Long-term boyfriend detected: <b>12 years</b> (persistent, adorable, slightly delayed).<br/>
+            Primary user: <b>Dhruva</b> (tired of “soon”).
+          </div>
+
+          <div class="buttons" style="margin-top:16px;">
+            <button id="start" style="background:linear-gradient(135deg,var(--mint),var(--pink2)); color:#061016; font-weight:1200;">
+              Run Husband Upgrade Audit →
+            </button>
+            <button id="skip" style="background:rgba(255,255,255,.12); color:rgba(255,255,255,.92); border:1px solid rgba(255,255,255,.22);">
+              Skip to “Yes”
+            </button>
+          </div>
+
+          <div class="tiny fadeIn" style="animation-delay:1.45s; color:rgba(255,255,255,.70);">
+            (Warning: elite roasting + premium affection. Proceed anyway.)
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screen 1: Renewal -->
+    <div class="content screen" id="s1">
+      <h1>Annual Boyfriend Membership Renewal 📄</h1>
+      <p>
+        Welcome, Shantanu. Your subscription is up for renewal.<br/>
+        Please submit your application for the <b>Husband Upgrade™</b> (requested by Dhruva).
+      </p>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="label">Application summary (auto-filled because you’d procrastinate)</div>
+          <ul class="deductions">
+            <li>Relationship duration: <b>12 years</b></li>
+            <li>Status: “Boyfriend (long-term, high potential)”</li>
+            <li>Ring integration: <b>Not detected</b> 💍❌</li>
+            <li>Excuse database: “robust”</li>
+            <li>Soft skills: elite (unfortunately adorable)</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="label">Terms & Conditions</div>
+          <div class="callout">
+            By continuing, you acknowledge that:<br/>
+            1) you will stop saying “soon”,<br/>
+            2) you will accept acts of service without acting tough,<br/>
+            3) you will enter princess mode for one (1) night.
+          </div>
+          <p class="tiny" style="margin-top:10px;">Binding in Dhruva’s court.</p>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <button id="apply" style="background:linear-gradient(135deg,var(--pink),var(--pink2)); color:white;">
+          Submit Renewal Application ✅
+        </button>
+        <button id="no" class="noBtn">No</button>
+      </div>
+
+      <p class="tiny" id="tease">Try pressing “No.” The button is shy around commitment.</p>
+    </div>
+
+    <!-- Screen 2: Audit -->
+    <div class="content screen" id="s2">
+      <h1>Evaluating Eligibility… 🧠💍</h1>
+      <p>
+        Please hold. Running diagnostics on Shantanu’s “husband energy.”
+        (This is a safe space. Mostly.)
+      </p>
+
+      <div class="panel">
+        <div class="label">Audit progress</div>
+        <div class="meter"><div class="bar" id="bar"></div></div>
+        <div class="log" id="log">
+          Initializing…
+          <span class="logline">Loading ring API…</span>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:14px;">
+        <div class="panel">
+          <div class="label">Score</div>
+          <div class="scoreRow">
+            <div class="scoreBig" id="scoreBig">100</div>
+            <div class="badge" id="badge">Pending</div>
+          </div>
+          <p class="tiny" id="scoreNote" style="margin-top:8px;">
+            Starting at 100. Deductions may apply (they will).
+          </p>
+        </div>
+
+        <div class="panel">
+          <div class="label">Deductions log (live)</div>
+          <ul class="deductions" id="deductions">
+            <li>— awaiting findings —</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <div class="label">Warnings</div>
+        <span class="warn" id="warning">CRITICAL DELAY IN PROPOSAL PIPELINE</span>
+        <p class="tiny" style="margin-top:8px;">
+          Proposed fix: accept tonight’s date and enter princess mode immediately.
+        </p>
+      </div>
+    </div>
+
+    <!-- Screen 3: Princess Mode -->
+    <div class="content screen" id="s3">
+      <h1>Princess Mode Assignment 👑</h1>
+      <p>
+        Since the proposal pipeline is… experiencing “buffering,”
+        Dhruva will temporarily assume husband duties for tonight.
+      </p>
+
+      <div class="grid">
+        <div class="panel">
+          <div class="label">Tonight (handled by Dhruva)</div>
+          <ul class="deductions">
+            <li>Flowers: delivered 💐</li>
+            <li>Healthy dinner: delivered 🍽️</li>
+            <li>No-sugar ice cream: delivered 🍦</li>
+            <li>Blanket + movie + cuddles: mandatory 😌</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="label">Your job (Shantanu edition)</div>
+          <ul class="deductions">
+            <li>Be ready at 7:00 PM</li>
+            <li>Wear something soft</li>
+            <li>Stop acting tough when you get flowers</li>
+            <li>Yes, you can borrow Dhruva’s lip gloss. Don’t make it weird.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <div class="label">Choose your princess outfit</div>
+        <div class="choicechips" id="chips">
+          <div class="chip" data-outfit="Soft hoodie + shorts (cozy royalty)">Soft hoodie + shorts</div>
+          <div class="chip" data-outfit="Cute lounge set (girlfriend mode)">Cute lounge set</div>
+          <div class="chip" data-outfit="T-shirt + that face (illegal)">T-shirt + that face</div>
+          <div class="chip" data-outfit="Whatever Dhruva picked (obedient)">Whatever you picked</div>
+        </div>
+        <p class="tiny" id="outfitHint" style="margin-top:10px;">Pick one. Dhruva is taking notes.</p>
+      </div>
+
+      <div class="buttons" style="margin-top:14px;">
+        <button id="confirm" style="background:linear-gradient(135deg,var(--mint),var(--pink2)); color:#061016; font-weight:1200;">
+          Confirm Outfit ✅
+        </button>
+      </div>
+    </div>
+
+    <!-- Screen 4: Final -->
+    <div class="content screen" id="s4">
+      <h1>Final Confirmation 😌</h1>
+      <p id="finalLine">Shantanu, do you accept this stay-in anniversary date and agree to be adored?</p>
+
+      <div class="buttons">
+        <button id="yesFinal" style="background:linear-gradient(135deg,var(--pink),var(--pink2)); color:white;">
+          Yes (I’m Dhruva’s princess) 💘
+        </button>
+        <button id="noFinal" class="noBtn">No</button>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <div class="label">Important note</div>
+        <p style="margin:0; color: rgba(17,18,38,.72); line-height:1.5;">
+          12 years. Still you. Still my favorite person.  
+          But respectfully, Shantanu… another year with <b>NO RING</b> was bold. 💍❌  
+          Tonight I’m spoiling you <i>and</i> roasting you. Balance.
+        </p>
+      </div>
+    </div>
+
+    <!-- Screen 5: Approved -->
+    <div class="content screen" id="s5">
+      <h1>Approved. See you at 7. 💐💘</h1>
+      <p>Good choice, Shantanu. Dhruva knew you were smart.</p>
+
+      <div class="panel">
+        <div class="label">Instructions</div>
+        <ul class="deductions">
+          <li>Be ready at <b>7:00 PM</b></li>
+          <li>When the flowers arrive, say “thank you babe” like a proper princess</li>
+          <li>Do not ask “what are we doing” — just show up and be loved</li>
+          <li>Negotiations: denied</li>
+        </ul>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <div class="label">P.S.</div>
+        <p style="margin:0; color: rgba(17,18,38,.72); line-height:1.5;">
+          This is the part where you smile, melt, and realize how much Dhruva can do.  
+          And next year… maybe we finally locate my husband. 💍
+        </p>
+      </div>
+
+      <div class="tiny" style="margin-top:12px;">— Dhruva 💅</div>
+    </div>
+
+    <div class="footer">
+      <div class="tiny" id="footerTease">No button is currently out of network.</div>
+      <div class="sig">💘</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Countdown to 7 PM (viewer local time)
+  const countdownPill = document.getElementById("countdownPill");
+  const targetHour = 19, targetMinute = 0;
+  function updateCountdown(){
+    const now = new Date();
+    const target = new Date(now);
+    target.setHours(targetHour, targetMinute, 0, 0);
+    if (target < now) target.setDate(target.getDate()+1);
+    const diff = target - now;
+    const h = Math.floor(diff/1000/60/60);
+    const m = Math.floor((diff/1000/60)%60);
+    const s = Math.floor((diff/1000)%60);
+    countdownPill.textContent = `⏳ ${h}h ${m}m ${s}s to date o’clock`;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Music controls (starts on "start" click)
+  const bgm = document.getElementById("bgm");
+  const musicToggle = document.getElementById("musicToggle");
+  let musicPlaying = false;
+
+  async function startMusic(){
+    try{
+      await bgm.play();
+      bgm.volume = 0.6;
+      musicPlaying = true;
+      musicToggle.textContent = "🔊 Music";
+    }catch(e){
+      // If blocked, user can hit the toggle.
+    }
+  }
+
+  musicToggle.addEventListener("click", async ()=>{
+    try{
+      if(!musicPlaying){
+        await bgm.play();
+        bgm.volume = 0.6;
+        musicPlaying = true;
+        musicToggle.textContent = "🔊 Music";
+      }else{
+        bgm.pause();
+        musicPlaying = false;
+        musicToggle.textContent = "🔇 Music";
+      }
+    }catch(e){}
+  });
+
+  // Screen navigation
+  const s0 = document.getElementById("s0");
+  const s1 = document.getElementById("s1");
+  const s2 = document.getElementById("s2");
+  const s3 = document.getElementById("s3");
+  const s4 = document.getElementById("s4");
+  const s5 = document.getElementById("s5");
+  const screens = [s0,s1,s2,s3,s4,s5];
+
+  function show(screen){
+    screens.forEach(x=>x.classList.remove("active"));
+    screen.classList.add("active");
+    window.scrollTo(0,0);
+  }
+
+  // Confetti hearts
+  const card = document.getElementById("card");
+  function confettiHearts(){
+    const hearts = ["💖","💘","💞","💗","✨","🥂","💐","💍"];
+    for (let i=0;i<30;i++){
+      const h = document.createElement("div");
+      h.className="heart";
+      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+      h.style.setProperty("--dx", (Math.random()*720 - 360) + "px");
+      h.style.setProperty("--dy", (Math.random()*-580 - 150) + "px");
+      h.style.left = (50 + (Math.random()*18 - 9)) + "%";
+      h.style.top  = (58 + (Math.random()*16 - 8)) + "%";
+      h.style.fontSize = (16 + Math.random()*18) + "px";
+      card.appendChild(h);
+      setTimeout(()=>h.remove(), 950);
+    }
+  }
+
+  // Track pointer for NO dodge
+  window.addEventListener("mousemove", (e)=>{ window.__last = {x:e.clientX,y:e.clientY}; }, {passive:true});
+  window.addEventListener("touchstart", (e)=>{
+    const t=e.touches[0]; if(t) window.__last={x:t.clientX,y:t.clientY};
+  }, {passive:true});
+
+  const arena = document.getElementById("arena");
+  const footerTease = document.getElementById("footerTease");
+  let dodgeCount = 0;
+
+  function clamp(n, min, max){ return Math.max(min, Math.min(max, n)); }
+
+  function moveNo(btn, primaryBtn, teaseEl){
+    dodgeCount++;
+
+    // Make *this specific button* absolute once (per button)
+    if (!btn.dataset.abs){
+      btn.dataset.abs = "1";
+      const r = btn.getBoundingClientRect();
+      const a = arena.getBoundingClientRect();
+      btn.style.position="absolute";
+      btn.style.left = (r.left - a.left) + "px";
+      btn.style.top  = (r.top - a.top) + "px";
+    }
+
+    const a = arena.getBoundingClientRect();
+    const c = card.getBoundingClientRect();
+    const n = btn.getBoundingClientRect();
+    const pad = 14;
+
+    const minX = c.left - a.left + pad;
+    const minY = c.top  - a.top + pad;
+    const maxX = (c.right - a.left) - n.width - pad;
+    const maxY = (c.bottom - a.top) - n.height - pad;
+
+    const last = window.__last || {x:c.left + c.width/2, y:c.top + c.height/2};
+    const targetX = clamp((last.x - a.left) + (Math.random() > 0.5 ? 220 : -220), minX, maxX);
+    const targetY = clamp((last.y - a.top)  + (Math.random() > 0.5 ? 160 : -160), minY, maxY);
+
+    const jitterX = (Math.random()*160) - 80;
+    const jitterY = (Math.random()*120) - 60;
+
+    btn.style.left = clamp(targetX + jitterX, minX, maxX) + "px";
+    btn.style.top  = clamp(targetY + jitterY, minY, maxY) + "px";
+
+    const lines = [
+      "No is currently out of network.",
+      "No button is shy around commitment.",
+      "Ring API still not responding… interesting.",
+      "Shantanu you forgot your lip gloss, princess.",
+      "Take Dhruva’s actually. Don’t fight it.",
+      "Excuse database: robust. Approval: pending.",
+      "If you hit no again, Dhruva sends TWO bouquets.",
+      "This button has trauma from ‘soon’.",
+      "Press YES and stop acting new."
+    ];
+    if (teaseEl) teaseEl.textContent = lines[Math.min(dodgeCount-1, lines.length-1)];
+
+    const footerLines = [
+      "No is not HIPAA-compliant.",
+      "No requires prior authorization.",
+      "No has been denied by the committee.",
+      "No is experiencing emotional buffering.",
+      "No is temporarily unavailable (cute)."
+    ];
+    footerTease.textContent = footerLines[(dodgeCount-1) % footerLines.length];
+
+    if (primaryBtn){
+      const scale = Math.min(1.24, 1 + dodgeCount*0.03);
+      primaryBtn.style.transform = `scale(${scale})`;
+    }
+  }
+
+  // Buttons
+  const startBtn = document.getElementById("start");
+  const skipBtn  = document.getElementById("skip");
+  const applyBtn = document.getElementById("apply");
+  const noBtn    = document.getElementById("no");
+  const tease    = document.getElementById("tease");
+
+  startBtn.addEventListener("click", ()=>{
+    startMusic();
+    show(s1);
+  });
+  skipBtn.addEventListener("click", ()=>{
+    startMusic();
+    show(s1);
+    confettiHearts();
+  });
+
+  // Screen 1: NO dodges
+  noBtn.addEventListener("mouseenter", ()=>moveNo(noBtn, applyBtn, tease));
+  noBtn.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noBtn, applyBtn, tease); });
+  noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noBtn, applyBtn, tease); }, {passive:false});
+
+  // Apply -> audit
+  applyBtn.addEventListener("click", ()=>{
+    confettiHearts();
+    show(s2);
+    runAudit();
+  });
+
+  // Audit logic
+  const bar = document.getElementById("bar");
+  const log = document.getElementById("log");
+  const scoreBig = document.getElementById("scoreBig");
+  const badge = document.getElementById("badge");
+  const scoreNote = document.getElementById("scoreNote");
+  const deductions = document.getElementById("deductions");
+  const warning = document.getElementById("warning");
+
+  let score = 100;
+  function setScore(n){
+    score = Math.max(0, Math.min(100, n));
+    scoreBig.textContent = score;
+  }
+
+  function runAudit(){
+    setScore(100);
+    badge.textContent = "Evaluating";
+    deductions.innerHTML = "<li>— audit started —</li>";
+    bar.style.width = "0%";
+    warning.textContent = "CRITICAL DELAY IN PROPOSAL PIPELINE";
+
+    const steps = [
+      {p:12, t:"Scanning for husband energy… found: boyfriend comfort mode v12.0 (Shantanu edition).", d:"-12: Has not been with Dhruva 24×7 this year (reduces score).", delta:12},
+      {p:28, t:"Checking proactive romance behavior…", d:"-15: Did not proactively over-compensate after 100 fights without being asked.", delta:15},
+      {p:44, t:"Public dominance display check…", d:"-20: Has not shown the world Dhruva dominates you equally (or more).", delta:20},
+      {p:60, t:"Excuse engine performance test…", d:"-18: Excuse generation speed = HIGH for everything.", delta:18},
+      {p:78, t:"Connecting to Ring API… timeout.", d:"-25: Another year with NO RING detected. 💍❌", delta:25},
+      {p:90, t:"Counter-checking: loyalty, love, history…", d:"+10: Emotional compatibility = elite. Cuddle compliance = dangerously high.", delta:-10},
+      {p:100,t:"Verdict compiling…", d:"Result: Upgrade eligible (barely). Mandatory princess mode tonight.", delta:0}
+    ];
+
+    const list = [];
+    let i=0;
+    const timer = setInterval(()=>{
+      const step = steps[i];
+      bar.style.width = step.p + "%";
+      log.innerHTML = `<span class="logline">${step.t}</span><span class="logline" style="opacity:.75;">${step.d}</span>`;
+
+      if (step.delta > 0) setScore(score - step.delta);
+      if (step.delta < 0) setScore(score + Math.abs(step.delta));
+
+      list.push(step.d);
+      deductions.innerHTML = list.map(x=>`<li>${x}</li>`).join("");
+
+      if (i === 4) warning.textContent = "WARNING: Proposal firmware outdated";
+      if (i === 5) warning.textContent = "NOTICE: Tonight’s plan will be handled by Dhruva 😌";
+
+      i++;
+      if (i >= steps.length){
+        clearInterval(timer);
+        badge.textContent = "Approved (pending obedience)";
+        scoreNote.textContent = "Yes, you got roasted. No, you’re not escaping.";
+        setTimeout(()=>show(s3), 850);
+      }
+    }, 950);
+  }
+
+  // Outfit selection
+  const chips = document.getElementById("chips");
+  const outfitHint = document.getElementById("outfitHint");
+  const confirm = document.getElementById("confirm");
+  let chosenOutfit = null;
+
+  chips.addEventListener("click", (e)=>{
+    const chip = e.target.closest(".chip");
+    if (!chip) return;
+    document.querySelectorAll(".chip").forEach(c=>c.classList.remove("active"));
+    chip.classList.add("active");
+    chosenOutfit = chip.dataset.outfit;
+    outfitHint.textContent = `Selected: ${chosenOutfit}. Cute.`;
+  });
+
+  confirm.addEventListener("click", ()=>{
+    confettiHearts();
+    show(s4);
+    if (chosenOutfit){
+      document.getElementById("finalLine").textContent =
+        `Shantanu, do you accept this stay-in anniversary date AND agree to wear: “${chosenOutfit}”? 😌`;
+    }
+  });
+
+  // Final yes/no with dodging NO
+  const yesFinal = document.getElementById("yesFinal");
+  const noFinal = document.getElementById("noFinal");
+
+  noFinal.addEventListener("mouseenter", ()=>moveNo(noFinal, yesFinal, null));
+  noFinal.addEventListener("mousedown", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal, null); });
+  noFinal.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(noFinal, yesFinal, null); }, {passive:false});
+
+  yesFinal.addEventListener("click", ()=>{
+    confettiHearts();
+    show(s5);
+  });
+</script>
+</body>
+</html>
+    
+  </body>
+  
+</html>
